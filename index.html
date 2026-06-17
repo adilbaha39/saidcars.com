@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Location de voitures à Marrakech - Said Cars. Service 24/7, livraison aéroport gratuite. Prix à partir de 300 DH/jour."/>
+<title>Ru Amsefeh - Location Voitures Marrakech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Tajawal:wght@400;500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --gold:#C9943A;--gold-l:#E8B86D;--gold-d:#8B6420;
+  --dark:#f5f5f5;--dark2:#ffffff;--dark3:#fafafa;
+  --white:#1a1a1a;--grey:#666;--grey2:#999;
+  --green:#25D366;--bg:#ffffff;
+  --ff-display:'Playfair Display',serif;
+  --ff-ar:'Tajawal',sans-serif;
+  --ff-body:'DM Sans',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--bg);color:var(--white);font-family:var(--ff-body);overflow-x:hidden;min-width:320px;text-rendering:optimizeSpeed;}
+
+[dir="rtl"]{font-family:var(--ff-ar);}
+[dir="rtl"] .nav-links{flex-direction:row-reverse;}
+[dir="rtl"] .hero-left{text-align:right;}
+[dir="rtl"] .hero-btns{flex-direction:row-reverse;}
+[dir="rtl"] .footer-contact a{flex-direction:row-reverse;}
+[dir="rtl"] .car-spec{flex-direction:row-reverse;}
+[dir="rtl"] .step-content{text-align:right;}
+[dir="rtl"] .testi-card{text-align:right;}
+[dir="rtl"] .testi-stars{justify-content:flex-end;}
+[dir="rtl"] .star-rating{justify-content:flex-end;}
+
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:10000;width:0%;transition:width .1s ease;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,148,58,.15);transition:all .3s ease;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+nav.scrolled{height:58px;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.nav-logo{display:flex;align-items:center;text-decoration:none;}
+.logo-emblem{width:80px;height:40px;overflow:hidden;border:1.5px solid var(--gold);flex-shrink:0;transition:all .3s ease;border-radius:4px;}
+nav.scrolled .logo-emblem{width:65px;height:32px;}
+.logo-emblem img{width:100%;height:100%;object-fit:cover;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{text-decoration:none;color:rgba(0,0,0,.6);font-size:12px;letter-spacing:1.8px;text-transform:uppercase;font-weight:500;transition:color .3s;position:relative;padding-bottom:2px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-nav-cta{background:var(--gold);color:#fff;padding:9px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s ease;clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px));white-space:nowrap;}
+.btn-nav-cta:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,148,58,.3);}
+.nav-wa{width:36px;height:36px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:transform .3s;flex-shrink:0;}
+.nav-wa:hover{transform:scale(1.1);}
+.nav-wa svg{width:18px;height:18px;fill:#fff;}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:transparent;border:none;z-index:1000;}
+.burger span{width:22px;height:1.5px;background:var(--white);transition:all .3s;display:block;}
+.mob-menu{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(255,255,255,.99);z-index:998;padding:24px 5%;flex-direction:column;gap:4px;border-bottom:1px solid rgba(201,148,58,.15);box-shadow:0 4px 10px rgba(0,0,0,.05);max-height:80vh;overflow-y:auto;}
+.mob-menu.open{display:flex;}
+.mob-menu a{color:rgba(0,0,0,.7);text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.04);}
+
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:68px;background:#fafafa;}
+.hero-bg{position:absolute;inset:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:1;filter:brightness(1.05);}
+.hero-bg::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,148,58,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,148,58,.04) 1px,transparent 1px);background-size:70px 70px;z-index:1;}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1280px;margin:0 auto;padding:80px 5%;}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,148,58,.6);padding:6px 18px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;background:rgba(255,255,255,.8);}
+.hero-pill::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+h1.hero-title{font-family:var(--ff-display);font-size:clamp(38px,5vw,72px);line-height:1.1;font-weight:700;margin-bottom:10px;color:#1a1a1a;}
+h1.hero-title em{font-style:italic;color:var(--gold);display:block;}
+.hero-sub{color:rgba(0,0,0,.6);font-size:15px;line-height:1.85;margin-bottom:34px;max-width:600px;}
+.hero-feats{display:flex;gap:20px;margin-bottom:38px;flex-wrap:wrap;}
+.h-feat{display:flex;align-items:center;gap:7px;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(0,0,0,.7);}
+.h-feat svg{width:14px;height:14px;fill:var(--gold);flex-shrink:0;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{background:var(--gold);color:#fff;padding:14px 28px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));transition:all .3s ease;display:inline-flex;align-items:center;gap:9px;white-space:nowrap;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,148,58,.3);}
+.btn-primary svg{width:16px;height:16px;fill:#fff;flex-shrink:0;}
+.btn-outline{background:rgba(255,255,255,.8);color:#1a1a1a;padding:14px 28px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(0,0,0,.15);cursor:pointer;transition:all .3s;white-space:nowrap;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.hero-bottom-note{position:absolute;bottom:28px;left:5%;z-index:2;display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(0,0,0,.5);}
+.hero-bottom-note::before{content:'';width:28px;height:1px;background:var(--gold);}
+
+.lang-float{position:fixed;bottom:26px;left:26px;z-index:997;display:flex;flex-direction:column;gap:8px;}
+[dir="rtl"] .lang-float{left:auto;right:26px;}
+.lang-flag-btn{width:44px;height:44px;border-radius:50%;border:2px solid rgba(201,148,58,.35);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;transition:all .3s;line-height:1;padding:0;overflow:hidden;}
+.lang-flag-btn:hover{border-color:var(--gold);transform:scale(1.1);}
+.lang-flag-btn.active{border-color:var(--gold);background:#fafafa;}
+
+.star-rating{display:flex;gap:6px;}
+.star-rating .star{cursor:pointer;transition:all .2s;fill:#ccc;width:28px;height:28px;}
+.star-rating .star.active,.star-rating .star:hover{fill:var(--gold);transform:scale(1.2);}
+
+.sec-head{text-align:center;margin-bottom:56px;}
+.sec-label{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.sec-label::before,.sec-label::after{content:'';width:24px;height:1px;background:var(--gold-d);transition:width .6s ease;}
+.sec-head:hover .sec-label::before,.sec-head:hover .sec-label::after{width:48px;}
+.sec-title{font-family:var(--ff-display);font-size:clamp(28px,3.8vw,52px);font-weight:700;line-height:1.1;color:#1a1a1a;}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-sub{color:var(--grey);font-size:14px;margin-top:10px;}
+
+#cars{padding:96px 5%;background:var(--bg);}
+.season-toggle{display:flex;justify-content:center;margin-bottom:40px;border:1px solid rgba(201,148,58,.3);max-width:300px;margin-left:auto;margin-right:auto;border-radius:4px;overflow:hidden;}
+.s-btn{flex:1;padding:10px 12px;background:transparent;border:none;color:var(--grey);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:var(--ff-body);white-space:nowrap;}
+.s-btn.active{background:var(--gold);color:#fff;}
+.cars-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.car-card{background:#fff;position:relative;overflow:hidden;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;opacity:0;transform:translateY(60px);border:1px solid rgba(0,0,0,.06);border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.03);display:flex;flex-direction:column;will-change:transform;}
+.car-card.vis{opacity:1;transform:translateY(0);transition:all .5s ease;}
+.car-card:nth-child(1).vis{transition-delay:.04s;}
+.car-card:nth-child(2).vis{transition-delay:.08s;}
+.car-card:nth-child(3).vis{transition-delay:.12s;}
+.car-card:nth-child(4).vis{transition-delay:.16s;}
+.car-card:nth-child(5).vis{transition-delay:.2s;}
+.car-card:nth-child(6).vis{transition-delay:.24s;}
+.car-card:nth-child(7).vis{transition-delay:.28s;}
+.car-card:nth-child(8).vis{transition-delay:.32s;}
+.car-card:nth-child(9).vis{transition-delay:.36s;}
+.car-card:nth-child(10).vis{transition-delay:.4s;}
+.car-card:nth-child(11).vis{transition-delay:.44s;}
+.car-card:nth-child(12).vis{transition-delay:.48s;}
+.car-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.08);}
+.car-badge{position:absolute;top:14px;right:14px;background:var(--gold);color:#fff;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;z-index:3;border-radius:2px;}
+[dir="rtl"] .car-badge{right:auto;left:14px;}
+.car-img-wrap{width:100%;height:180px;overflow:hidden;background:#f0f0f0;position:relative;}
+.car-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;will-change:transform;}
+.car-card:hover .car-img-wrap img{transform:scale(1.06);}
+.car-info{padding:16px;display:flex;flex-direction:column;flex:1;}
+.car-name{font-family:var(--ff-display);font-size:18px;font-weight:700;margin-bottom:8px;color:#1a1a1a;}
+.car-specs-row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.car-spec{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--grey);}
+.car-spec svg{width:12px;height:12px;fill:var(--gold);flex-shrink:0;}
+.car-price-wrap{display:flex;align-items:baseline;gap:8px;margin-top:auto;}
+.car-price{font-size:24px;font-weight:700;color:var(--gold);font-family:var(--ff-display);}
+.car-price-unit{font-size:12px;color:var(--grey);}
+.car-price-summer{font-size:10px;color:var(--grey2);margin-top:2px;}
+.btn-book-car{width:100%;margin-top:12px;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:10px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s ease;font-family:var(--ff-body);white-space:nowrap;border-radius:4px;}
+.btn-book-car:hover{background:var(--gold);color:#fff;}
+
+#conditions{padding:96px 5%;background:#fafafa;position:relative;overflow:hidden;}
+.cond-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.cond-card{background:#fff;padding:40px 30px;position:relative;overflow:hidden;transition:transform .4s ease,box-shadow .4s ease;border:1px solid rgba(0,0,0,.04);border-radius:6px;}
+.cond-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(201,148,58,.1);}
+.cond-icon{width:50px;height:50px;border:1px solid rgba(201,148,58,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:22px;transition:transform .4s ease;}
+.cond-card:hover .cond-icon{transform:rotate(360deg) scale(1.1);}
+.cond-icon svg{width:24px;height:24px;fill:var(--gold);}
+.cond-title{font-family:var(--ff-display);font-size:18px;font-weight:700;color:var(--gold);margin-bottom:14px;}
+.cond-list{list-style:none;}
+.cond-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:rgba(0,0,0,.6);line-height:1.7;margin-bottom:8px;}
+.cond-list li::before{content:'▸';color:var(--gold);font-size:10px;margin-top:4px;flex-shrink:0;}
+[dir="rtl"] .cond-list li{flex-direction:row-reverse;}
+[dir="rtl"] .cond-icon{margin-left:auto;margin-right:0;}
+[dir="rtl"] .cond-card{text-align:right;}
+
+#how{padding:96px 5%;background:#fff;}
+.how-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.step{text-align:center;padding:0 18px;position:relative;z-index:1;}
+.step-num{width:70px;height:70px;border:1px solid var(--gold);background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;}
+.step-num svg{width:28px;height:28px;fill:var(--gold);}
+.step-title{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:8px;}
+.step-text{font-size:12px;color:var(--grey);line-height:1.7;}
+
+#testi{padding:96px 5%;background:#fafafa;}
+.testi-wrap{max-width:1100px;margin:0 auto;}
+.testi-slides-outer{overflow:hidden;width:100%;}
+.testi-slides{display:flex;gap:20px;transition:transform .5s ease;width:100%;}
+.testi-card{flex:0 0 auto;background:#fff;padding:32px;border:1px solid rgba(0,0,0,.04);position:relative;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 2px 8px rgba(0,0,0,.02);border-radius:6px;}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(201,148,58,.08);}
+.testi-card::before{content:'\201C';position:absolute;top:18px;right:22px;font-family:var(--ff-display);font-size:72px;color:rgba(201,148,58,.1);line-height:1;}
+[dir="rtl"] .testi-card::before{right:auto;left:22px;content:'\201D';}
+.testi-stars{display:flex;gap:3px;margin-bottom:16px;}
+.testi-stars svg{width:16px;height:16px;fill:var(--gold);flex-shrink:0;}
+.testi-text{font-size:13px;color:rgba(0,0,0,.6);line-height:1.85;margin-bottom:20px;font-style:italic;}
+.testi-name{font-size:13px;font-weight:600;color:#1a1a1a;}
+.testi-loc{font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+.testi-nav{display:flex;justify-content:center;gap:10px;margin-top:36px;}
+.t-btn{width:42px;height:42px;border:1px solid rgba(201,148,58,.3);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;border-radius:50%;}
+.t-btn:hover{background:var(--gold);border-color:var(--gold);}
+.t-btn:hover svg{fill:#fff;}
+.t-btn svg{width:16px;height:16px;fill:#1a1a1a;}
+
+#add-review{padding:60px 5%;background:#fff;border-top:1px solid rgba(201,148,58,.1);}
+.review-form-wrap{max-width:600px;margin:0 auto;}
+.review-form-wrap h3{font-family:var(--ff-display);font-size:24px;text-align:center;margin-bottom:8px;color:#1a1a1a;}
+.review-form-wrap h3 em{color:var(--gold);font-style:italic;}
+.rev-ff{margin-bottom:16px;}
+.rev-ff label{display:block;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.rev-ff input,.rev-ff textarea{width:100%;background:#fafafa;border:1px solid rgba(201,148,58,.2);color:#1a1a1a;padding:12px 15px;font-family:var(--ff-body);font-size:13px;outline:none;transition:border-color .3s;border-radius:4px;}
+.rev-ff input:focus,.rev-ff textarea:focus{border-color:var(--gold);}
+.rev-ff textarea{resize:vertical;min-height:80px;}
+.rev-rating-wrap{display:flex;align-items:center;gap:14px;margin-bottom:20px;justify-content:center;flex-wrap:wrap;}
+.rev-rating-wrap span{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--grey);}
+.btn-submit-review{width:100%;background:var(--gold);color:#fff;padding:14px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s ease;font-family:var(--ff-body);border-radius:4px;}
+.btn-submit-review:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,148,58,.3);}
+.rev-error{color:#e74c3c;font-size:10px;text-align:center;margin-top:8px;display:none;}
+.rev-error.show{display:block;}
+
+#strip{padding:44px 5%;background:#fff;border-top:1px solid rgba(201,148,58,.1);border-bottom:1px solid rgba(201,148,58,.1);}
+.strip-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:36px;}
+.strip-item{display:flex;align-items:center;gap:14px;}
+.strip-icon{width:44px;height:44px;flex-shrink:0;border:1px solid rgba(201,148,58,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.strip-icon svg{width:20px;height:20px;fill:var(--gold);}
+.strip-t{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:3px;}
+.strip-s{font-size:11px;color:var(--grey);}
+[dir="rtl"] .strip-item{flex-direction:row-reverse;text-align:right;}
+
+.address-footer{text-align:center;padding:20px 5%;background:#fff;border-top:1px solid rgba(201,148,58,.15);}
+.address-footer p{font-family:var(--ff-display);font-size:16px;color:var(--gold);letter-spacing:1px;font-weight:700;font-style:italic;}
+
+footer{background:#fafafa;padding:60px 5% 28px;border-top:1px solid rgba(201,148,58,.08);}
+.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:50px;}
+.f-brand{font-family:var(--ff-display);font-size:24px;font-weight:700;color:var(--gold);letter-spacing:3px;display:block;margin-bottom:3px;}
+.f-brand small{color:var(--grey);font-size:9px;letter-spacing:4px;text-transform:uppercase;font-family:var(--ff-body);}
+.f-desc{color:var(--grey);font-size:13px;line-height:1.8;margin-top:14px;max-width:280px;}
+.f-contact{margin-top:22px;}
+.f-contact a{display:flex;align-items:center;gap:9px;color:var(--grey);font-size:13px;text-decoration:none;margin-bottom:9px;transition:color .3s;}
+.f-contact a:hover{color:var(--gold);}
+.f-contact svg{width:14px;height:14px;fill:var(--gold);flex-shrink:0;}
+[dir="rtl"] .f-contact a{flex-direction:row-reverse;}
+.f-col h4{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+.f-col ul{list-style:none;}
+.f-col li{margin-bottom:9px;}
+.f-col a{color:var(--grey);text-decoration:none;font-size:13px;transition:color .3s;}
+.socials{display:flex;gap:10px;margin-top:18px;}
+.soc-btn{width:36px;height:36px;border:1px solid rgba(201,148,58,.28);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;text-decoration:none;border-radius:50%;}
+.soc-btn:hover{background:var(--gold);border-color:var(--gold);}
+.soc-btn:hover svg{fill:#fff;}
+.soc-btn svg{width:14px;height:14px;fill:#1a1a1a;}
+.f-bottom{border-top:1px solid rgba(0,0,0,.05);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.f-bottom p{font-size:11px;color:rgba(0,0,0,.4);}
+
+.wa-float{position:fixed;bottom:26px;right:26px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:998;transition:transform .3s;border:none;animation:waPulse 2.5s infinite;}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6);}70%{box-shadow:0 0 0 20px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+.wa-float:hover{transform:scale(1.1);animation:none;box-shadow:0 4px 18px rgba(37,211,102,.4);}
+.wa-float svg{width:26px;height:26px;fill:#fff;}
+[dir="rtl"] .wa-float{right:auto;left:26px;}
+
+.modal{display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;}
+.modal.open{display:flex;}
+.modal-ov{position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.modal-box{position:relative;z-index:1;background:#fff;border:1px solid rgba(201,148,58,.18);padding:44px;max-width:520px;width:92%;max-height:90vh;overflow-y:auto;animation:modalIn .3s ease;box-shadow:0 20px 60px rgba(0,0,0,.1);border-radius:8px;}
+@keyframes modalIn{from{opacity:0;transform:translateY(30px) scale(.95);}to{opacity:1;transform:translateY(0) scale(1);}}
+.modal-close{position:absolute;top:14px;right:14px;background:transparent;border:none;color:var(--grey);font-size:22px;cursor:pointer;line-height:1;transition:color .3s;}
+[dir="rtl"] .modal-close{right:auto;left:14px;}
+.modal-close:hover{color:#1a1a1a;}
+.modal-title{font-family:var(--ff-display);font-size:28px;font-weight:700;margin-bottom:6px;color:#1a1a1a;}
+.modal-car{font-family:var(--ff-display);font-size:18px;color:var(--gold);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(201,148,58,.14);}
+.modal-sub{font-size:13px;color:var(--grey);margin-bottom:26px;}
+.ff{margin-bottom:16px;}
+.ff label{display:block;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.ff input,.ff select,.ff textarea{width:100%;background:#fafafa;border:1px solid rgba(201,148,58,.2);color:#1a1a1a;padding:12px 15px;font-family:var(--ff-body);font-size:13px;outline:none;transition:border-color .3s;border-radius:4px;}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--gold);}
+.ff select option{background:#fff;}
+.ff textarea{resize:vertical;min-height:80px;}
+.ff input.error,.ff select.error{border-color:#e74c3c !important;}
+.error-msg{color:#e74c3c;font-size:10px;margin-top:4px;display:none;}
+.error-msg.show{display:block;}
+.btn-wa-submit{width:100%;background:var(--green);color:#fff;border:none;padding:14px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--ff-body);transition:opacity .3s;white-space:nowrap;border-radius:4px;}
+.btn-wa-submit:hover{opacity:.9;}
+.btn-wa-submit svg{width:18px;height:18px;fill:#fff;flex-shrink:0;}
+
+.toast{position:fixed;bottom:86px;right:26px;background:#fff;border:1px solid var(--gold);padding:14px 22px;font-size:12px;color:#1a1a1a;z-index:9999;transform:translateY(16px);opacity:0;transition:all .4s;pointer-events:none;max-width:260px;box-shadow:0 4px 15px rgba(0,0,0,.1);border-radius:4px;}
+[dir="rtl"] .toast{right:auto;left:26px;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+.fu{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.fu.vis{opacity:1;transform:translateY(0);}
+
+@media(max-width:1100px){
+  .cond-grid{grid-template-columns:repeat(2,1fr);}
+  .how-grid{grid-template-columns:repeat(2,1fr);gap:30px;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+  .strip-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:900px){
+  .nav-links,.nav-right .btn-nav-cta{display:none;}
+  .burger{display:flex;}
+  .cars-grid{grid-template-columns:repeat(2,1fr);}
+  .cond-grid{grid-template-columns:1fr;}
+  .how-grid{grid-template-columns:1fr 1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+  .strip-grid{grid-template-columns:1fr 1fr;}
+  .car-img-wrap{height:160px;}
+}
+@media(max-width:600px){
+  .cars-grid{grid-template-columns:1fr;}
+  .how-grid{grid-template-columns:1fr;}
+  .strip-grid{grid-template-columns:1fr;}
+  .lang-float{bottom:10px;left:10px;gap:6px;}
+  [dir="rtl"] .lang-float{left:auto;right:10px;}
+  .lang-flag-btn{width:38px;height:38px;font-size:18px;}
+  .modal-box{padding:28px 20px;}
+  .car-img-wrap{height:200px;}
+  .hero-inner{padding:60px 4% 40px;}
+  .hero-sub{font-size:13px;line-height:1.6;}
+  .hero-btns{flex-direction:column;gap:10px;}
+  .btn-primary,.btn-outline{width:100%;justify-content:center;padding:16px 20px;}
+  .footer-inner{gap:36px;}
+  .cond-card{padding:28px 20px;}
+  .testi-card{padding:24px 18px;}
+  .step{padding:0 8px;}
+  .step-num{width:56px;height:56px;}
+  .step-num svg{width:22px;height:22px;}
+  .season-toggle{max-width:100%;}
+  .s-btn{font-size:9px;padding:10px 8px;letter-spacing:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="toast" id="toast"></div>
+
+<div class="lang-float">
+  <button class="lang-flag-btn active" onclick="setLang('fr')" id="lang-fr" title="Français">🇫🇷</button>
+  <button class="lang-flag-btn" onclick="setLang('en')" id="lang-en" title="English">🇬🇧</button>
+  <button class="lang-flag-btn" onclick="setLang('ar')" id="lang-ar" title="العربية">🇸🇦</button>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-ov" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-title" id="m-title"></div>
+    <div class="modal-car" id="m-car"></div>
+    <div class="modal-sub" id="m-sub"></div>
+    <div class="ff"><label id="l-car"></label><select id="f-car"><option value="" data-i18n="car_choose"></option></select></div>
+    <div class="ff"><label id="l-name"></label><input type="text" id="f-name" autocomplete="name"/><div class="error-msg" id="err-name"></div></div>
+    <div class="ff"><label id="l-phone"></label><input type="tel" id="f-phone" placeholder="+212 6XX XXX XXX" autocomplete="tel"/><div class="error-msg" id="err-phone"></div></div>
+    <div class="ff"><label id="l-from"></label>
+      <select id="f-from">
+        <option value="Marrakech">Marrakech</option>
+        <option value="Aéroport Marrakech">Aéroport Marrakech (gratuit)</option>
+        <option value="Casablanca">Casablanca</option><option value="Agadir">Agadir</option>
+        <option value="Rabat">Rabat</option><option value="Tanger">Tanger</option>
+        <option value="Fès">Fès</option><option value="Autre">Autre</option>
+      </select>
+    </div>
+    <div class="ff"><label id="l-start"></label><input type="date" id="f-start"/><div class="error-msg" id="err-start"></div></div>
+    <div class="ff"><label id="l-end"></label><input type="date" id="f-end"/><div class="error-msg" id="err-end"></div></div>
+    <div class="ff"><label id="l-msg"></label><textarea id="f-msg" placeholder="..." rows="2"></textarea></div>
+    <button class="btn-wa-submit" onclick="validateAndSend()">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.099 1.508 5.82L.057 23.5l5.81-1.525A11.939 11.939 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      <span id="m-btn-txt"></span>
+    </button>
+  </div>
+</div>
+
+<button class="wa-float" onclick="openModal('')" title="WhatsApp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.099 1.508 5.82L.057 23.5l5.81-1.525A11.939 11.939 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+</button>
+
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="logo-emblem">
+      <img src="logo.jpeg" alt="Logo" width="80" height="40" loading="eager" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=color:#C9943A;font-family:serif;font-size:11px;font-weight:700;>RA</span>'"/>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active" data-i18n="nav_home"></a></li>
+    <li><a href="#cars" data-i18n="nav_cars"></a></li>
+    <li><a href="#conditions" data-i18n="nav_conditions"></a></li>
+    <li><a href="#how" data-i18n="nav_how"></a></li>
+    <li><a href="#testi" data-i18n="nav_reviews"></a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-nav-cta" onclick="openModal('')" data-i18n="nav_cta"></button>
+    <button class="nav-wa" onclick="openWA()" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.099 1.508 5.82L.057 23.5l5.81-1.525A11.939 11.939 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></button>
+    <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a href="#" onclick="toggleMenu()" data-i18n="nav_home"></a>
+  <a href="#cars" onclick="toggleMenu()" data-i18n="nav_cars"></a>
+  <a href="#conditions" onclick="toggleMenu()" data-i18n="nav_conditions"></a>
+  <a href="#how" onclick="toggleMenu()" data-i18n="nav_how"></a>
+  <a href="#testi" onclick="toggleMenu()" data-i18n="nav_reviews"></a>
+</div>
+
+<section id="hero">
+  <div class="hero-bg"><img src="image1.jpeg" alt="Marrakech" width="1600" height="900" loading="eager" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1600 900%22%3E%3Crect fill=%22%23fafafa%22 width=%221600%22 height=%22900%22/%3E%3Ctext x=%22800%22 y=%22450%22 text-anchor=%22middle%22 fill=%22%23C9943A%22 font-size=%2240%22%3ERu Amsefeh%3C/text%3E%3C/svg%3E'"/></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-pill"><span data-i18n="hero_badge"></span></div>
+      <h1 class="hero-title"><span data-i18n="hero_title1"></span><em data-i18n="hero_title2"></em></h1>
+      <p class="hero-sub" data-i18n="hero_sub"></p>
+      <div class="hero-feats">
+        <div class="h-feat"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg><span data-i18n="feat1"></span></div>
+        <div class="h-feat"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg><span data-i18n="feat2"></span></div>
+        <div class="h-feat"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg><span data-i18n="feat3"></span></div>
+      </div>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="openModal('')"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.099 1.508 5.82L.057 23.5l5.81-1.525A11.939 11.939 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span data-i18n="btn_wa_book"></span></button>
+        <button class="btn-outline" onclick="document.getElementById('cars').scrollIntoView({behavior:'smooth'})" data-i18n="btn_see_cars"></button>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom-note" data-i18n="hero_note"></div>
+</section>
+
+<section id="cars">
+  <div class="sec-head fu"><div class="sec-label"><span data-i18n="cars_label"></span></div><h2 class="sec-title"><span data-i18n="cars_title1"></span> <em data-i18n="cars_title2"></em></h2><p class="sec-sub" data-i18n="cars_sub"></p></div>
+  <div class="season-toggle"><button class="s-btn active" onclick="setSeason('normal')" id="btn-normal" data-i18n="season_normal"></button><button class="s-btn" onclick="setSeason('summer')" id="btn-summer" data-i18n="season_summer"></button></div>
+  <div class="cars-grid" id="cars-grid"></div>
+</section>
+
+<section id="conditions">
+  <div class="sec-head fu"><div class="sec-label"><span data-i18n="cond_label"></span></div><h2 class="sec-title"><span data-i18n="cond_title1"></span> <em data-i18n="cond_title2"></em></h2></div>
+  <div class="cond-grid">
+    <div class="cond-card fu"><div class="cond-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div><div class="cond-title" data-i18n="cond1_title"></div><ul class="cond-list" id="cond1-list"></ul></div>
+    <div class="cond-card fu"><div class="cond-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div class="cond-title" data-i18n="cond2_title"></div><ul class="cond-list" id="cond2-list"></ul></div>
+    <div class="cond-card fu"><div class="cond-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div><div class="cond-title" data-i18n="cond3_title"></div><ul class="cond-list" id="cond3-list"></ul></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="sec-head fu"><div class="sec-label"><span data-i18n="how_label"></span></div><h2 class="sec-title"><span data-i18n="how_title1"></span> <em data-i18n="how_title2"></em></h2></div>
+  <div class="how-grid">
+    <div class="step fu"><div class="step-num"><svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99z"/></svg></div><div class="step-content"><div class="step-title" data-i18n="step1_t"></div><p class="step-text" data-i18n="step1_s"></p></div></div>
+    <div class="step fu"><div class="step-num"><svg viewBox="0 0 24 24"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg></div><div class="step-content"><div class="step-title" data-i18n="step2_t"></div><p class="step-text" data-i18n="step2_s"></p></div></div>
+    <div class="step fu"><div class="step-num"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.099 1.508 5.82L.057 23.5l5.81-1.525A11.939 11.939 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div><div class="step-content"><div class="step-title" data-i18n="step3_t"></div><p class="step-text" data-i18n="step3_s"></p></div></div>
+    <div class="step fu"><div class="step-num"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div class="step-content"><div class="step-title" data-i18n="step4_t"></div><p class="step-text" data-i18n="step4_s"></p></div></div>
+  </div>
+</section>
+
+<section id="testi">
+  <div class="sec-head fu"><div class="sec-label"><span data-i18n="testi_label"></span></div><h2 class="sec-title"><span data-i18n="testi_title1"></span> <em data-i18n="testi_title2"></em></h2></div>
+  <div class="testi-wrap fu"><div class="testi-slides-outer" id="tOuter"><div class="testi-slides" id="tSlides"></div></div>
+    <div class="testi-nav"><button class="t-btn" onclick="slideTesti(-1)" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg></button><button class="t-btn" onclick="slideTesti(1)" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button></div>
+  </div>
+</section>
+
+<section id="add-review">
+  <div class="review-form-wrap fu"><h3><span data-i18n="rev_title1"></span> <em data-i18n="rev_title2"></em></h3><p class="rev-sub" data-i18n="rev_sub"></p>
+    <div class="rev-ff"><label data-i18n="rev_name"></label><input type="text" id="rev-name" autocomplete="name"/></div>
+    <div class="rev-rating-wrap"><span data-i18n="rev_rate"></span><div class="star-rating" id="review-stars">
+      <svg class="star" data-val="1" onclick="setReviewRating(1)" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg class="star" data-val="2" onclick="setReviewRating(2)" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg class="star" data-val="3" onclick="setReviewRating(3)" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg class="star" data-val="4" onclick="setReviewRating(4)" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg class="star" data-val="5" onclick="setReviewRating(5)" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div></div>
+    <div class="rev-ff"><label data-i18n="rev_msg"></label><textarea id="rev-msg" placeholder="..." rows="2"></textarea></div>
+    <div class="rev-error" id="rev-error"></div>
+    <button class="btn-submit-review" onclick="submitReview()"><span data-i18n="rev_btn"></span></button>
+  </div>
+</section>
+
+<section id="strip">
+  <div class="strip-grid">
+    <div class="strip-item fu"><div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg></div><div><div class="strip-t" data-i18n="strip1_t"></div><div class="strip-s" data-i18n="strip1_s"></div></div></div>
+    <div class="strip-item fu"><div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div><div><div class="strip-t" data-i18n="strip2_t"></div><div class="strip-s" data-i18n="strip2_s"></div></div></div>
+    <div class="strip-item fu"><div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><div class="strip-t" data-i18n="strip3_t"></div><div class="strip-s" data-i18n="strip3_s"></div></div></div>
+    <div class="strip-item fu"><div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div><div><div class="strip-t" data-i18n="strip4_t"></div><div class="strip-s" data-i18n="strip4_s"></div></div></div>
+  </div>
+</section>
+
+<div class="address-footer">
+  <p>Rue Amsefeh l'ensemble de l'artisanat Medina</p>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><span class="f-brand">Ru Amsefeh<small> – Car Rental</small></span><p class="f-desc" data-i18n="f_desc"></p>
+      <div class="f-contact">
+        <a href="https://wa.me/212725950908"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.549 4.099 1.508 5.82L.057 23.5l5.81-1.525A11.939 11.939 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>+212 725 950 908</a>
+        <a href="mailto:contactsaidcars@gmail.com"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>contactsaidcars@gmail.com</a>
+      </div>
+    </div>
+    <div class="f-col"><h4 data-i18n="f_nav"></h4><ul><li><a href="#" data-i18n="nav_home"></a></li><li><a href="#cars" data-i18n="nav_cars"></a></li><li><a href="#conditions" data-i18n="nav_conditions"></a></li><li><a href="#how" data-i18n="nav_how"></a></li><li><a href="#testi" data-i18n="nav_reviews"></a></li></ul></div>
+    <div class="f-col"><h4 data-i18n="f_follow"></h4><div class="socials">
+      <a class="soc-btn" href="https://www.instagram.com/said_benmars?igsh=MWJkZHMzdHl0aHU5YQ==" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a class="soc-btn" href="https://www.facebook.com/shrconstruction.95" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    </div><div style="margin-top:28px;"><button class="btn-nav-cta" onclick="openModal('')" data-i18n="nav_cta" style="width:100%;clip-path:none;"></button></div></div>
+  </div>
+  <div class="f-bottom"><p>© 2024 Ru Amsefeh – Location de Voitures</p><p>Marrakech · 7j/7 · 24h/24</p></div>
+</footer>
+
+<script>
+const i18n={
+  fr:{
+    nav_home:'Accueil',nav_cars:'Nos voitures',nav_conditions:'Conditions',nav_how:'Comment ça marche',nav_reviews:'Avis clients',nav_cta:'Réserver',
+    hero_badge:'Location de voitures à Marrakech',hero_title1:'Louez une voiture',hero_title2:'à Marrakech',hero_sub:'Des véhicules récents et haut de gamme pour explorer le Maroc. Service 24h/24, 7j/7. Livraison à l\'aéroport gratuite.',
+    feat1:'Livraison aéroport',feat2:'Assurance complète',feat3:'Support 24/7',
+    btn_wa_book:'Réserver sur WhatsApp',btn_see_cars:'Voir nos voitures',hero_note:'Réservation à partir de 3 jours minimum',
+    cars_label:'Flotte',cars_title1:'Nos voitures',cars_title2:'disponibles',cars_sub:'Tarifs affichés par jour. +100 DH en haute saison (été & jours fériés).',
+    season_normal:'Saison normale',season_summer:'Été / Fériés (+100 DH)',per_day:'/ jour',book_btn:'Réserver',
+    cond_label:'Transparence',cond_title1:'Conditions',cond_title2:'de location',
+    cond1_title:'Profil conducteur',cond1:['Âge minimum : 24 ans','Permis de conduire valide','Étrangers acceptés sans permis international','Passeport suffisant pour les étrangers'],
+    cond2_title:'Tarifs & paiement',cond2:['Paiement : espèces ou carte bancaire','Kilométrage : 200 km/jour inclus','Dépassement km : supplément appliqué','Caution / dépôt : aucun','Tarif été (juil-août) & jours fériés : +100 DH/j'],
+    cond3_title:'Assurance & livraison',cond3:['Assurance tous risques incluse','Livraison aéroport Marrakech : gratuite','Livraison autres villes : en supplément','Disponibilité : 7j/7, 24h/24'],
+    how_label:'Processus',how_title1:'Comment',how_title2:'ça marche ?',
+    step1_t:'Choisissez',step1_s:'Parcourez notre flotte et sélectionnez le véhicule idéal.',
+    step2_t:'Sélectionnez vos dates',step2_s:'Choisissez vos dates de départ et retour. Minimum 3 jours.',
+    step3_t:'Réservez',step3_s:'Envoyez votre demande via WhatsApp. Confirmation rapide.',
+    step4_t:'Récupérez',step4_s:'Livraison gratuite à l\'aéroport ou à votre hôtel.',
+    testi_label:'Avis clients',testi_title1:'Ce que disent',testi_title2:'nos clients',
+    t1_name:'Karim B.',t1_loc:'Marrakech',t1_text:'Service impeccable, voiture propre et livrée à l\'heure. Je recommande vivement !',
+    t2_name:'Youssef A.',t2_loc:'Casablanca',t2_text:'Très bonne expérience, VW T-Roc en parfait état. Équipe réactive.',
+    t3_name:'Julie M.',t3_loc:'Paris',t3_text:'Étrangère sans permis international, aucun problème. Juste le passeport !',
+    t4_name:'Hassan L.',t4_loc:'Agadir',t4_text:'Meilleur rapport qualité/prix à Marrakech. Service au top.',
+    rev_title1:'Laisser un',rev_title2:'avis',rev_sub:'Partagez votre expérience avec saidcars',rev_name:'Votre nom',rev_rate:'Votre note',rev_msg:'Votre avis (optionnel)',rev_btn:'Envoyer votre avis',
+    rev_sent:'✓ Avis envoyé avec succès !',rev_error_name:'Veuillez entrer votre nom',rev_error_rate:'Veuillez sélectionner une note',
+    strip1_t:'3 jours minimum',strip1_s:'Durée minimale de location',strip2_t:'Livraison gratuite',strip2_s:'Aéroport Marrakech',
+    strip3_t:'Annulation flexible',strip3_s:'Conditions souples',strip4_t:'Assurance tous risques',strip4_s:'Couverture complète incluse',
+    f_desc:'Location de voitures premium à Marrakech. Flotte récente, service irréprochable, disponibles 24h/24.',
+    f_nav:'Navigation',f_follow:'Suivez-nous',
+    m_title:'Réserver',m_sub:'Remplissez le formulaire. Minimum 3 jours de location.',
+    l_name:'Votre nom',l_phone:'Téléphone',l_from:'Lieu de départ',l_start:'Date de départ',l_end:'Date de retour',l_msg:'Message (optionnel)',
+    l_car:'Choisir une voiture',car_choose:'— Sélectionnez une voiture —',m_btn:'Envoyer sur WhatsApp',
+    wa_msg:(n,c,f,s,e,m)=>`Bonjour saidcars 👋\n\n*Réservation*\n👤 ${n}\n🚗 ${c}\n📍 ${f}\n📅 ${s} → ${e}${m?'\n📝 '+m:''}\n\nMerci !`,
+    toast_msg:'✓ Redirection vers WhatsApp...',
+    val_name:'Veuillez entrer votre nom',val_phone:'Veuillez entrer un numéro valide',val_car:'Veuillez sélectionner une voiture',
+    val_dates:'Veuillez sélectionner les dates',val_min3:'Minimum 3 jours de location',val_end_before_start:'La date de retour doit être après la date de départ'
+  },
+  en:{
+    nav_home:'Home',nav_cars:'Our Cars',nav_conditions:'Conditions',nav_how:'How it works',nav_reviews:'Reviews',nav_cta:'Book Now',
+    hero_badge:'Car rental in Marrakech',hero_title1:'Rent a car',hero_title2:'in Marrakech',hero_sub:'Recent, premium vehicles to explore Morocco. Available 24/7. Free airport delivery.',
+    feat1:'Airport delivery',feat2:'Full insurance',feat3:'24/7 support',
+    btn_wa_book:'Book on WhatsApp',btn_see_cars:'See our cars',hero_note:'Minimum rental: 3 days',
+    cars_label:'Fleet',cars_title1:'Our',cars_title2:'available cars',cars_sub:'Daily rates shown. +100 MAD during peak season (summer & holidays).',
+    season_normal:'Normal season',season_summer:'Summer / Holidays (+100 MAD)',per_day:'/ day',book_btn:'Book',
+    cond_label:'Transparency',cond_title1:'Rental',cond_title2:'conditions',
+    cond1_title:'Driver profile',cond1:['Minimum age: 24 years','Valid driving license','Foreigners accepted without international license','Passport is sufficient'],
+    cond2_title:'Pricing & payment',cond2:['Payment: cash or card','Mileage: 200 km/day included','Extra km charged additionally','Security deposit: none','Summer (Jul-Aug) & holidays: +100 MAD/day'],
+    cond3_title:'Insurance & delivery',cond3:['Full comprehensive insurance','Free delivery to Marrakech airport','Delivery to other cities: additional fee','Available: 7 days, 24h/24'],
+    how_label:'Process',how_title1:'How does',how_title2:'it work?',
+    step1_t:'Choose',step1_s:'Browse our fleet and select the perfect vehicle.',
+    step2_t:'Select dates',step2_s:'Choose your start and return dates. Minimum 3 days.',
+    step3_t:'Book',step3_s:'Send your request via WhatsApp. Quick confirmation.',
+    step4_t:'Pick up',step4_s:'Free delivery to the airport or your hotel.',
+    testi_label:'Reviews',testi_title1:'What our',testi_title2:'clients say',
+    t1_name:'Karim B.',t1_loc:'Marrakech',t1_text:'Impeccable service, clean car delivered on time. Highly recommend!',
+    t2_name:'Youssef A.',t2_loc:'Casablanca',t2_text:'Great experience, VW T-Roc in perfect condition. Responsive team.',
+    t3_name:'Julie M.',t3_loc:'Paris',t3_text:'Foreigner without international license, no problem. Just my passport!',
+    t4_name:'Hassan L.',t4_loc:'Agadir',t4_text:'Best value for money in Marrakech. Top service.',
+    rev_title1:'Leave a',rev_title2:'review',rev_sub:'Share your experience with saidcars',rev_name:'Your name',rev_rate:'Your rating',rev_msg:'Your review (optional)',rev_btn:'Submit review',
+    rev_sent:'✓ Review sent successfully!',rev_error_name:'Please enter your name',rev_error_rate:'Please select a rating',
+    strip1_t:'3 days minimum',strip1_s:'Minimum rental period',strip2_t:'Free delivery',strip2_s:'Marrakech Airport',
+    strip3_t:'Flexible cancellation',strip3_s:'Easy terms',strip4_t:'Full insurance',strip4_s:'Complete coverage',
+    f_desc:'Premium car rental in Marrakech. Recent fleet, excellent service, available 24/7.',
+    f_nav:'Navigation',f_follow:'Follow us',
+    m_title:'Book Now',m_sub:'Fill the form. Minimum 3 days rental.',
+    l_name:'Your name',l_phone:'Phone',l_from:'Pickup location',l_start:'Start date',l_end:'Return date',l_msg:'Message (optional)',
+    l_car:'Choose a car',car_choose:'— Select a car —',m_btn:'Send on WhatsApp',
+    wa_msg:(n,c,f,s,e,m)=>`Hello saidcars 👋\n\n*Booking*\n👤 ${n}\n🚗 ${c}\n📍 ${f}\n📅 ${s} → ${e}${m?'\n📝 '+m:''}\n\nThank you!`,
+    toast_msg:'✓ Redirecting to WhatsApp...',
+    val_name:'Please enter your name',val_phone:'Please enter a valid number',val_car:'Please select a car',
+    val_dates:'Please select both dates',val_min3:'Minimum 3 days rental',val_end_before_start:'Return date must be after start date'
+  },
+  ar:{
+    nav_home:'الرئيسية',nav_cars:'سياراتنا',nav_conditions:'الشروط',nav_how:'كيف يعمل',nav_reviews:'آراء العملاء',nav_cta:'احجز الآن',
+    hero_badge:'كراء السيارات بمراكش',hero_title1:'استأجر سيارتك',hero_title2:'في مراكش بأفضل سعر',hero_sub:'سيارات حديثة وفاخرة لاستكشاف المغرب. متاحون 24/7. التوصيل للمطار مجاني.',
+    feat1:'توصيل للمطار',feat2:'تأمين شامل',feat3:'دعم 24/7',
+    btn_wa_book:'احجز على واتساب',btn_see_cars:'شوف سياراتنا',hero_note:'الحجز من 3 أيام على الأقل',
+    cars_label:'الأسطول',cars_title1:'سياراتنا',cars_title2:'المتاحة',cars_sub:'الثمن بالنهار. +100 درهم في الموسم الصيفي والعطل.',
+    season_normal:'الموسم العادي',season_summer:'صيف / عطل (+100 درهم)',per_day:'/ يوم',book_btn:'احجز',
+    cond_label:'الشفافية',cond_title1:'شروط',cond_title2:'الكراء',
+    cond1_title:'ملف السائق',cond1:['السن الأدنى: 24 سنة','رخصة السياقة سارية المفعول','الأجانب مقبولون بدون رخصة دولية','جواز السفر كافٍ'],
+    cond2_title:'الثمن والدفع',cond2:['الدفع: كاش أو بطاقة','الكيلومتراج: 200 كم/يوم مشمول','الزيادة في الكيلومتراج: مؤدى عنها','الكاسيون: غير مطلوب','الصيف والعطل: +100 درهم/يوم'],
+    cond3_title:'التأمين والتوصيل',cond3:['تأمين شامل لجميع الأضرار','التوصيل لمطار مراكش: مجاني','التوصيل لمدن أخرى: بثمن إضافي','متاحون: 7 أيام، 24/24'],
+    how_label:'العملية',how_title1:'كيف',how_title2:'تسير الأمور؟',
+    step1_t:'اختر',step1_s:'تصفح أسطولنا واختر السيارة المناسبة.',
+    step2_t:'حدد التواريخ',step2_s:'اختر تاريخ البداية والرجوع. الحد الأدنى 3 أيام.',
+    step3_t:'احجز',step3_s:'أرسل طلبك عبر واتساب. تأكيد سريع.',
+    step4_t:'استلم',step4_s:'توصيل مجاني للمطار أو الفندق.',
+    testi_label:'آراء العملاء',testi_title1:'ماذا يقول',testi_title2:'عملاؤنا',
+    t1_name:'كريم ب.',t1_loc:'مراكش',t1_text:'خدمة ممتازة، السيارة نظيفة ووصلت في الوقت. أوصي بشدة!',
+    t2_name:'يوسف أ.',t2_loc:'الدار البيضاء',t2_text:'تجربة رائعة، VW T-Roc في حالة ممتازة. فريق محترف.',
+    t3_name:'جولي م.',t3_loc:'باريس',t3_text:'أجنبية بدون رخصة دولية، ولا مشكلة. فقط جواز السفر!',
+    t4_name:'حسن ل.',t4_loc:'أكادير',t4_text:'أفضل سعر وجودة في مراكش. خدمة ممتازة.',
+    rev_title1:'اترك',rev_title2:'تقييماً',rev_sub:'شارك تجربتك مع saidcars',rev_name:'اسمك',rev_rate:'تقييمك',rev_msg:'تعليقك (اختياري)',rev_btn:'إرسال التقييم',
+    rev_sent:'✓ تم إرسال تقييمك بنجاح!',rev_error_name:'المرجو إدخال اسمك',rev_error_rate:'المرجو اختيار تقييم',
+    strip1_t:'3 أيام كحد أدنى',strip1_s:'الحد الأدنى للحجز',strip2_t:'توصيل مجاني',strip2_s:'مطار مراكش',
+    strip3_t:'إلغاء مرن',strip3_s:'شروط سهلة',strip4_t:'تأمين شامل',strip4_s:'تغطية كاملة',
+    f_desc:'كراء السيارات الفاخرة بمراكش. أسطول حديث، خدمة ممتازة، متاحون 24/24.',
+    f_nav:'التنقل',f_follow:'تابعنا',
+    m_title:'احجز الآن',m_sub:'أملأ النموذج. الحد الأدنى 3 أيام.',
+    l_name:'اسمك',l_phone:'الهاتف',l_from:'مكان الانطلاق',l_start:'تاريخ البداية',l_end:'تاريخ الرجوع',l_msg:'ملاحظة (اختياري)',
+    l_car:'اختر سيارة',car_choose:'— اختر سيارة —',m_btn:'إرسال على واتساب',
+    wa_msg:(n,c,f,s,e,m)=>`مرحباً saidcars 👋\n\n*حجز جديد*\n👤 ${n}\n🚗 ${c}\n📍 ${f}\n📅 ${s} → ${e}${m?'\n📝 '+m:''}\n\nشكراً!`,
+    toast_msg:'✓ جاري التوجيه إلى واتساب...',
+    val_name:'المرجو إدخال اسمك',val_phone:'المرجو إدخال رقم صحيح',val_car:'المرجو اختيار سيارة',
+    val_dates:'المرجو اختيار التاريخين',val_min3:'الحد الأدنى 3 أيام',val_end_before_start:'تاريخ الرجوع بعد تاريخ البداية'
+  }
+};
+
+const cars=[
+  {name:'Peugeot 208',price:300,summer:400,img:'cars1.jpeg',gear:'Automatique',seats:5,badge:'Peugeot',year:'2025'},
+  {name:'Mercedes-Benz CLA 250',price:1100,summer:1200,img:'cars2.jpeg',gear:'Automatique',seats:5,badge:'Mercedes-Benz',year:'2026'},
+  {name:'Volkswagen T-Roc',price:700,summer:800,img:'cars3.jpeg',gear:'Automatique',seats:5,badge:'Volkswagen',year:'2025'},
+  {name:'Mercedes-Benz G-Class AMG',price:9200,summer:9500,img:'cars4.jpeg',gear:'Automatique',seats:5,badge:'Mercedes-Benz',year:'2025'},
+  {name:'Volkswagen Golf',price:1000,summer:1200,img:'cars5.jpeg',gear:'Automatique',seats:5,badge:'Volkswagen',year:'2024'},
+  {name:'Renault Clio (Bleu)',price:300,summer:400,img:'cars6.jpeg',gear:'Automatique',seats:5,badge:'Renault',year:'2025'},
+  {name:'Audi A3',price:1100,summer:1200,img:'cars7.jpeg',gear:'Automatique',seats:5,badge:'Audi',year:'2026'},
+  {name:'Renault Clio (Blanc)',price:300,summer:400,img:'cars8.jpeg',gear:'Automatique',seats:5,badge:'Renault',year:'2020'},
+  {name:'Mercedes-Benz A-Class',price:1100,summer:1200,img:'cars9.jpeg',gear:'Automatique',seats:5,badge:'Mercedes-Benz',year:'2024'},
+  {name:'Cupra Formentor',price:1100,summer:1200,img:'cars10.jpeg',gear:'Automatique',seats:5,badge:'Cupra',year:'2026'},
+  {name:'Fiat 500',price:300,summer:400,img:'cars11.jpeg',gear:'Automatique',seats:4,badge:'Fiat',year:'2024'},
+  {name:'Dacia Duster',price:350,summer:450,img:'cars12.jpeg',gear:'Automatique',seats:5,badge:'Dacia',year:'2024'}
+];
+
+let currentLang='fr',currentSeason='normal',currentCar='',tIdx=0,tCardW=0,reviewRating=0;
+
+function detectLang(){const s=localStorage.getItem('ruamsefeh_lang');if(s&&(s==='fr'||s==='en'||s==='ar'))return s;const l=(navigator.language||'fr').split('-')[0];return l==='ar'?'ar':l==='fr'?'fr':'en';}
+
+function setLang(lang){currentLang=lang;localStorage.setItem('ruamsefeh_lang',lang);const t=i18n[lang];document.title="Ru Amsefeh - Location Voitures Marrakech";document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});const isAr=lang==='ar';document.documentElement.setAttribute('dir',isAr?'rtl':'ltr');document.documentElement.setAttribute('lang',lang);document.body.style.fontFamily=isAr?'var(--ff-ar)':'var(--ff-body)';document.querySelectorAll('.lang-flag-btn').forEach(b=>b.classList.remove('active'));const ab=document.getElementById('lang-'+lang);if(ab)ab.classList.add('active');buildCars();buildConditions();buildTestimonials();updateModalLabels();buildCarSelect();resetReviewRating();tIdx=0;setTimeout(initSlider,100);}
+
+function setReviewRating(v){reviewRating=v;document.querySelectorAll('#review-stars .star').forEach((s,i)=>s.classList.toggle('active',i<v));}
+function resetReviewRating(){reviewRating=0;document.querySelectorAll('#review-stars .star').forEach(s=>s.classList.remove('active'));}
+
+function submitReview(){const t=i18n[currentLang],n=document.getElementById('rev-name').value.trim(),m=document.getElementById('rev-msg').value.trim(),e=document.getElementById('rev-error');e.classList.remove('show');if(!n){e.textContent=t.rev_error_name;e.classList.add('show');return;}if(!reviewRating){e.textContent=t.rev_error_rate;e.classList.add('show');return;}window.open('https://wa.me/212725950908?text='+encodeURIComponent(`مرحباً saidcars 👋\n\n*تقييم جديد*\n👤 ${n}\n${'⭐'.repeat(reviewRating)} ${reviewRating}/5${m?'\n📝 '+m:''}\n\nشكراً!`),'_blank');document.getElementById('rev-name').value='';document.getElementById('rev-msg').value='';resetReviewRating();showToast(t.rev_sent,'success');}
+
+function buildCars(){const t=i18n[currentLang],g=document.getElementById('cars-grid');if(!g)return;g.innerHTML='';const frag=document.createDocumentFragment();cars.forEach((c,i)=>{const p=currentSeason==='summer'?c.summer:c.price,d=document.createElement('div');d.className='car-card';d.innerHTML=`${c.badge?`<span class="car-badge">${c.badge}</span>`:''}<div class="car-img-wrap"><img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=color:var(--gold)>${c.name}</span>'"/></div><div class="car-info"><div class="car-name">${c.name}</div><div class="car-specs-row"><div class="car-spec"><svg viewBox="0 0 24 24" width="12" height="12" fill="var(--gold)"><circle cx="12" cy="12" r="10"/></svg>${c.gear}</div><div class="car-spec"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>${c.seats} ${currentLang==='ar'?'مقاعد':'places'}</div>${c.year?`<div class="car-spec"><svg viewBox="0 0 24 24"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>${c.year}</div>`:''}</div><div class="car-price-wrap"><div class="car-price">${p} DH</div><div class="car-price-unit">${t.per_day}</div></div>${currentSeason==='normal'?`<div class="car-price-summer">${currentLang==='ar'?`الصيف: ${c.summer} درهم`:`Été : ${c.summer} DH`}</div>`:''}<button class="btn-book-car" onclick="openModal('${c.name}')">${t.book_btn}</button></div>`;frag.appendChild(d);});g.appendChild(frag);requestAnimationFrame(()=>{const cards=g.querySelectorAll('.car-card');cards.forEach((c,i)=>{setTimeout(()=>c.classList.add('vis'),40+(i*15));});});}
+
+function buildTestimonials(){const t=i18n[currentLang],s=document.getElementById('tSlides');if(!s)return;s.innerHTML='';for(let i=1;i<=4;i++){const c=document.createElement('div');c.className='testi-card';c.innerHTML=`<div class="testi-stars">${'<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'.repeat(5)}</div><p class="testi-text">${t['t'+i+'_text']}</p><div class="testi-name">${t['t'+i+'_name']}</div><div class="testi-loc">${t['t'+i+'_loc']}</div>`;s.appendChild(c);}initSlider();}
+
+function buildCarSelect(){const t=i18n[currentLang],s=document.getElementById('f-car');if(!s)return;s.innerHTML=`<option value="">${t.car_choose}</option>`;cars.forEach(c=>{const o=document.createElement('option');o.value=c.name;o.textContent=c.name;s.appendChild(o);});if(currentCar&&s.querySelector(`option[value="${currentCar}"]`))s.value=currentCar;}
+
+function buildConditions(){const t=i18n[currentLang];['cond1','cond2','cond3'].forEach(k=>{const l=document.getElementById(k+'-list');if(l){l.innerHTML='';t[k].forEach(i=>{const li=document.createElement('li');li.textContent=i;l.appendChild(li);});}});}
+
+function setSeason(s){currentSeason=s;document.getElementById('btn-normal').classList.toggle('active',s==='normal');document.getElementById('btn-summer').classList.toggle('active',s==='summer');buildCars();}
+
+function updateModalLabels(){const t=i18n[currentLang];document.getElementById('m-title').textContent=t.m_title;document.getElementById('m-sub').textContent=t.m_sub;document.getElementById('l-car').textContent=t.l_car;document.getElementById('l-name').textContent=t.l_name;document.getElementById('l-phone').textContent=t.l_phone;document.getElementById('l-from').textContent=t.l_from;document.getElementById('l-start').textContent=t.l_start;document.getElementById('l-end').textContent=t.l_end;document.getElementById('l-msg').textContent=t.l_msg;document.getElementById('m-btn-txt').textContent=t.m_btn;}
+
+function openModal(cn){currentCar=cn;updateModalLabels();buildCarSelect();document.getElementById('m-car').textContent=cn||(currentLang==='ar'?'سيارة':'Voiture');clearErrors();document.getElementById('f-name').value='';document.getElementById('f-phone').value='';document.getElementById('f-start').value='';document.getElementById('f-end').value='';document.getElementById('f-msg').value='';if(cn)document.getElementById('f-car').value=cn;document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';clearErrors();}
+function clearErrors(){document.querySelectorAll('.ff input.error, .ff select.error').forEach(e=>e.classList.remove('error'));document.querySelectorAll('.error-msg').forEach(e=>{e.classList.remove('show');e.textContent='';});}
+function showFieldError(fid,eid,m){const f=document.getElementById(fid),e=document.getElementById(eid);if(f)f.classList.add('error');if(e){e.textContent=m;e.classList.add('show');}}
+
+function validateAndSend(){clearErrors();const t=i18n[currentLang];let h=false;const c=document.getElementById('f-car').value,n=document.getElementById('f-name').value.trim(),p=document.getElementById('f-phone').value.trim(),f=document.getElementById('f-from').value,s=document.getElementById('f-start').value,e=document.getElementById('f-end').value,m=document.getElementById('f-msg').value.trim();if(!c){showFieldError('f-car','err-car',t.val_car);h=true;}if(!n){showFieldError('f-name','err-name',t.val_name);h=true;}if(!p||p.replace(/[\s\+\-\(\)]/g,'').length<8){showFieldError('f-phone','err-phone',t.val_phone);h=true;}if(!s||!e){showFieldError('f-start','err-start',t.val_dates);showFieldError('f-end','err-end','');h=true;}if(s&&e){const ds=new Date(s),de=new Date(e);if(de<=ds){showFieldError('f-end','err-end',t.val_end_before_start);h=true;}if(Math.ceil((de-ds)/86400000)<3){showFieldError('f-end','err-end',t.val_min3);h=true;}}if(h){const fe=document.querySelector('.ff input.error, .ff select.error');if(fe)fe.scrollIntoView({behavior:'smooth',block:'center'});return;}window.open('https://wa.me/212725950908?text='+encodeURIComponent(t.wa_msg(n,c,f,s,e,m)),'_blank');closeModal();showToast(t.toast_msg,'success');}
+
+function openWA(){const g=currentLang==='ar'?'مرحباً saidcars 🚗':(currentLang==='en'?'Hello saidcars 🚗':'Bonjour saidcars 🚗');window.open('https://wa.me/212725950908?text='+encodeURIComponent(g),'_blank');}
+function showToast(m,tp){const tt=document.getElementById('toast');tt.textContent=m;tt.className='toast '+(tp==='error'?'error':'');tt.classList.add('show');setTimeout(()=>tt.classList.remove('show'),3500);}
+function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open');}
+
+window.addEventListener('scroll',()=>{const n=document.getElementById('mainNav');if(n)n.classList.toggle('scrolled',window.scrollY>80);document.getElementById('progressBar').style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+
+function initSlider(){const o=document.getElementById('tOuter'),s=document.getElementById('tSlides');if(!o||!s||s.children.length===0)return;const w=o.offsetWidth,pv=w>960?3:w>600?2:1,gap=20;tCardW=(w-(gap*(pv-1)))/pv;Array.from(s.children).forEach(c=>{c.style.flex='0 0 '+tCardW+'px';c.style.minWidth=tCardW+'px';c.style.maxWidth=tCardW+'px';});slideTesti(0);}
+function slideTesti(dir){const s=document.getElementById('tSlides');if(!s||s.children.length===0)return;const w=document.getElementById('tOuter').offsetWidth,pv=w>960?3:w>600?2:1;tIdx=Math.max(0,Math.min(tIdx+dir,Math.max(0,s.children.length-pv)));s.style.transform=`translateX(-${tIdx*(tCardW+20)}px)`;}
+
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.08});
+function observeAll(){document.querySelectorAll('.fu').forEach(el=>obs.observe(el));}
+
+(function(){const l=detectLang();currentLang=l;document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');document.documentElement.setAttribute('lang',l);document.body.style.fontFamily=l==='ar'?'var(--ff-ar)':'var(--ff-body)';document.addEventListener('DOMContentLoaded',()=>{setLang(l);observeAll();});})();
+
+window.addEventListener('resize',()=>{tIdx=0;setTimeout(initSlider,150);},{passive:true});
+</script>
+</body>
+</html>
