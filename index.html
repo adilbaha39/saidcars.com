@@ -304,9 +304,1001 @@ footer{background:#fafafa;padding:60px 5% 28px;border-top:1px solid rgba(201,148
   .season-toggle{max-width:100%;}
   .s-btn{font-size:9px;padding:10px 8px;letter-spacing:0;}
 }
+
+/* ===== ENHANCED ANIMATIONS & EFFECTS ===== */
+
+/* Smooth transitions */
+:root {
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-elastic: 0.6s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+/* Page Loader */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loader-icon {
+  font-size: 48px;
+  color: var(--gold);
+  animation: carBounce 1s ease infinite;
+}
+@keyframes carBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.1); }
+}
+.loader-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold-d);
+  letter-spacing: 2px;
+  animation: textPulse 1.5s ease infinite;
+}
+@keyframes textPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Enhanced Navbar */
+nav {
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all var(--transition-smooth);
+}
+nav.scrolled {
+  height: 58px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+
+/* Logo Animation */
+.logo-emblem {
+  transition: all var(--transition-smooth);
+  overflow: hidden;
+}
+.logo-emblem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(201,148,58,.2);
+}
+.logo-emblem img {
+  transition: transform var(--transition-smooth);
+}
+.logo-emblem:hover img {
+  transform: scale(1.1);
+}
+
+/* Nav Links Enhanced */
+.nav-links a {
+  position: relative;
+  transition: color var(--transition-fast);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: all var(--transition-smooth);
+  transform: translateX(-50%);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+.nav-links a:hover {
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* CTA Button Enhanced */
+.btn-nav-cta {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+.btn-nav-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+  transition: left 0.6s ease;
+}
+.btn-nav-cta:hover::before {
+  left: 100%;
+}
+.btn-nav-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(201,148,58,.4);
+}
+
+/* WhatsApp Button Enhanced */
+.nav-wa {
+  transition: all var(--transition-bounce);
+}
+.nav-wa:hover {
+  transform: scale(1.15) rotate(10deg);
+  box-shadow: 0 4px 15px rgba(37,211,102,.3);
+}
+
+/* Hero Section Enhanced */
+#hero {
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg img {
+  transition: transform 8s ease;
+}
+#hero:hover .hero-bg img {
+  transform: scale(1.05);
+}
+.hero-pill {
+  transition: all var(--transition-smooth);
+}
+.hero-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(201,148,58,.2);
+}
+.hero-pill::before {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .3; transform: scale(0.8); }
+}
+
+/* Hero Title Animation */
+.hero-title {
+  animation: slideInLeft 1s ease forwards;
+  opacity: 0;
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.hero-title em {
+  position: relative;
+  display: inline-block;
+}
+.hero-title em::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  animation: expandWidth 1s ease 0.5s forwards;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+@keyframes expandWidth {
+  to { transform: scaleX(1); }
+}
+
+.hero-sub {
+  animation: fadeInUp 1s ease 0.3s forwards;
+  opacity: 0;
+}
+.hero-feats {
+  animation: fadeInUp 1s ease 0.6s forwards;
+  opacity: 0;
+}
+.hero-btns {
+  animation: fadeInUp 1s ease 0.9s forwards;
+  opacity: 0;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Features Enhanced */
+.h-feat {
+  transition: all var(--transition-smooth);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.h-feat:hover {
+  background: rgba(201,148,58,.1);
+  transform: translateY(-3px);
+}
+.h-feat svg {
+  transition: transform var(--transition-bounce);
+}
+.h-feat:hover svg {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* Primary Button Enhanced */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+  transition: left 0.6s ease;
+}
+.btn-primary:hover::before {
+  left: 100%;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(201,148,58,.4);
+}
+.btn-primary svg {
+  transition: transform var(--transition-bounce);
+}
+.btn-primary:hover svg {
+  transform: scale(1.2) rotate(-10deg);
+}
+
+/* Outline Button Enhanced */
+.btn-outline {
+  transition: all var(--transition-smooth);
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(201,148,58,.15);
+}
+
+/* Section Headers Enhanced */
+.sec-label {
+  transition: all var(--transition-smooth);
+}
+.sec-label::before,
+.sec-label::after {
+  transition: all var(--transition-smooth);
+}
+.sec-head:hover .sec-label::before,
+.sec-head:hover .sec-label::after {
+  width: 48px;
+}
+.sec-title {
+  transition: transform var(--transition-smooth);
+}
+.sec-head:hover .sec-title {
+  transform: scale(1.02);
+}
+
+/* Season Toggle Enhanced */
+.s-btn {
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+.s-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.2);
+  transition: left var(--transition-smooth);
+}
+.s-btn:hover::before {
+  left: 0;
+}
+.s-btn:hover {
+  transform: translateY(-2px);
+}
+.s-btn.active {
+  box-shadow: 0 4px 15px rgba(201,148,58,.3);
+}
+
+/* Car Cards Enhanced */
+.car-card {
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+.car-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-l));
+  transform: scaleX(0);
+  transition: transform var(--transition-smooth);
+  z-index: 2;
+}
+.car-card:hover::before {
+  transform: scaleX(1);
+}
+.car-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+}
+.car-img-wrap {
+  overflow: hidden;
+}
+.car-img-wrap img {
+  transition: transform var(--transition-smooth);
+}
+.car-card:hover .car-img-wrap img {
+  transform: scale(1.1);
+}
+.car-badge {
+  transition: all var(--transition-smooth);
+}
+.car-card:hover .car-badge {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,.2);
+}
+.car-name {
+  transition: color var(--transition-fast);
+}
+.car-card:hover .car-name {
+  color: var(--gold);
+}
+.car-price {
+  transition: transform var(--transition-bounce);
+}
+.car-card:hover .car-price {
+  transform: scale(1.1);
+}
+
+/* Book Button Enhanced */
+.btn-book-car {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+.btn-book-car::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gold);
+  transition: left var(--transition-smooth);
+  z-index: -1;
+}
+.btn-book-car:hover::before {
+  left: 0;
+}
+.btn-book-car:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(201,148,58,.3);
+}
+
+/* Condition Cards Enhanced */
+.cond-card {
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+.cond-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-l));
+  transform: scaleX(0);
+  transition: transform var(--transition-smooth);
+}
+.cond-card:hover::before {
+  transform: scaleX(1);
+}
+.cond-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(201,148,58,.1);
+}
+.cond-icon {
+  transition: all var(--transition-bounce);
+}
+.cond-card:hover .cond-icon {
+  transform: rotate(360deg) scale(1.1);
+  border-color: var(--gold);
+  background: rgba(201,148,58,.1);
+}
+.cond-title {
+  transition: color var(--transition-fast);
+}
+.cond-card:hover .cond-title {
+  color: var(--gold-d);
+}
+
+/* Steps Enhanced */
+.step {
+  transition: all var(--transition-smooth);
+}
+.step:hover {
+  transform: translateY(-5px);
+}
+.step-num {
+  transition: all var(--transition-bounce);
+}
+.step:hover .step-num {
+  transform: scale(1.1);
+  border-color: var(--gold);
+  box-shadow: 0 8px 20px rgba(201,148,58,.2);
+}
+.step-num svg {
+  transition: transform var(--transition-bounce);
+}
+.step:hover .step-num svg {
+  transform: scale(1.2);
+}
+
+/* Testimonial Cards Enhanced */
+.testi-card {
+  transition: all var(--transition-smooth);
+}
+.testi-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(201,148,58,.1);
+}
+.testi-card::before {
+  transition: all var(--transition-smooth);
+}
+.testi-card:hover::before {
+  color: rgba(201,148,58,.2);
+  transform: scale(1.1);
+}
+.testi-stars svg {
+  transition: transform var(--transition-bounce);
+}
+.testi-card:hover .testi-stars svg {
+  transform: scale(1.2);
+}
+
+/* Testimonial Nav Buttons Enhanced */
+.t-btn {
+  transition: all var(--transition-bounce);
+}
+.t-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: scale(1.1);
+}
+.t-btn:hover svg {
+  fill: #fff;
+  transform: scale(1.2);
+}
+.t-btn svg {
+  transition: all var(--transition-fast);
+}
+
+/* Review Form Enhanced */
+.rev-ff input,
+.rev-ff textarea {
+  transition: all var(--transition-smooth);
+}
+.rev-ff input:focus,
+.rev-ff textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(201,148,58,.1);
+  transform: translateY(-2px);
+}
+.star-rating .star {
+  transition: all var(--transition-bounce);
+  cursor: pointer;
+}
+.star-rating .star:hover {
+  transform: scale(1.3) rotate(15deg);
+}
+.star-rating .star.active {
+  animation: starPulse 0.5s ease;
+}
+@keyframes starPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1.2); }
+}
+.btn-submit-review {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+.btn-submit-review::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+  transition: left 0.6s ease;
+}
+.btn-submit-review:hover::before {
+  left: 100%;
+}
+.btn-submit-review:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(201,148,58,.4);
+}
+
+/* Strip Items Enhanced */
+.strip-item {
+  transition: all var(--transition-smooth);
+  padding: 10px;
+  border-radius: 8px;
+}
+.strip-item:hover {
+  background: rgba(201,148,58,.05);
+  transform: translateY(-3px);
+}
+.strip-icon {
+  transition: all var(--transition-bounce);
+}
+.strip-item:hover .strip-icon {
+  transform: scale(1.15) rotate(10deg);
+  border-color: var(--gold);
+  background: rgba(201,148,58,.1);
+}
+.strip-icon svg {
+  transition: transform var(--transition-bounce);
+}
+.strip-item:hover .strip-icon svg {
+  transform: scale(1.2);
+}
+
+/* Footer Enhanced */
+.f-brand {
+  transition: all var(--transition-fast);
+}
+.f-brand:hover {
+  color: var(--gold-l);
+}
+.f-contact a {
+  transition: all var(--transition-fast);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.f-contact a:hover {
+  color: var(--gold);
+  background: rgba(201,148,58,.1);
+  transform: translateX(5px);
+}
+.f-contact a svg {
+  transition: transform var(--transition-bounce);
+}
+.f-contact a:hover svg {
+  transform: scale(1.2) rotate(10deg);
+}
+.f-col a {
+  transition: all var(--transition-fast);
+  display: inline-block;
+  padding: 2px 0;
+}
+.f-col a:hover {
+  color: var(--gold);
+  transform: translateX(5px);
+}
+
+/* Social Buttons Enhanced */
+.soc-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-bounce);
+}
+.soc-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform var(--transition-bounce);
+}
+.soc-btn:hover::before {
+  transform: scale(1);
+}
+.soc-btn:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px) scale(1.1);
+}
+.soc-btn svg {
+  position: relative;
+  z-index: 1;
+  transition: all var(--transition-fast);
+}
+.soc-btn:hover svg {
+  fill: #fff;
+  transform: scale(1.2);
+}
+
+/* WhatsApp Float Enhanced */
+.wa-float {
+  transition: all var(--transition-bounce);
+  animation: waPulse 2.5s infinite;
+}
+@keyframes waPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,.6); }
+  70% { box-shadow: 0 0 0 20px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+.wa-float:hover {
+  transform: scale(1.15);
+  animation: none;
+  box-shadow: 0 8px 25px rgba(37,211,102,.4);
+}
+.wa-float svg {
+  transition: transform var(--transition-bounce);
+}
+.wa-float:hover svg {
+  transform: scale(1.2) rotate(-10deg);
+}
+
+/* Modal Enhanced */
+.modal-ov {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all var(--transition-smooth);
+}
+.modal-box {
+  animation: modalIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all var(--transition-smooth);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-close {
+  transition: all var(--transition-bounce);
+}
+.modal-close:hover {
+  color: var(--gold);
+  transform: rotate(90deg) scale(1.1);
+}
+.ff input,
+.ff select,
+.ff textarea {
+  transition: all var(--transition-smooth);
+}
+.ff input:focus,
+.ff select:focus,
+.ff textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(201,148,58,.1);
+  transform: translateY(-2px);
+}
+.btn-wa-submit {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+.btn-wa-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+  transition: left 0.6s ease;
+}
+.btn-wa-submit:hover::before {
+  left: 100%;
+}
+.btn-wa-submit:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(37,211,102,.4);
+}
+.btn-wa-submit svg {
+  transition: transform var(--transition-bounce);
+}
+.btn-wa-submit:hover svg {
+  transform: scale(1.2) rotate(-10deg);
+}
+
+/* Toast Enhanced */
+.toast {
+  transition: all var(--transition-smooth);
+  border-left: 3px solid var(--gold);
+}
+.toast.show {
+  animation: toastIn 0.4s ease forwards;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.toast.error {
+  border-left-color: #e74c3c;
+}
+.toast.success {
+  border-left-color: #2ecc71;
+}
+
+/* Language Buttons Enhanced */
+.lang-flag-btn {
+  transition: all var(--transition-bounce);
+}
+.lang-flag-btn:hover {
+  transform: scale(1.15) rotate(5deg);
+  border-color: var(--gold);
+  box-shadow: 0 4px 15px rgba(201,148,58,.2);
+}
+.lang-flag-btn.active {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(201,148,58,.3);
+}
+
+/* Progress Bar Enhanced */
+.progress-bar {
+  transition: width 0.1s ease;
+  background: linear-gradient(90deg, var(--gold), var(--gold-l));
+}
+
+/* Mobile Menu Enhanced */
+.mob-menu.open {
+  animation: slideDown 0.3s ease;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mob-menu a {
+  transition: all var(--transition-fast);
+}
+.mob-menu a:hover {
+  color: var(--gold);
+  padding-left: 10px;
+  background: rgba(201,148,58,.05);
+}
+
+/* Burger Animation */
+.burger span {
+  transition: all var(--transition-smooth);
+}
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.burger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-d);
+}
+
+/* Address Footer Enhanced */
+.address-footer {
+  transition: all var(--transition-smooth);
+}
+.address-footer:hover {
+  background: rgba(201,148,58,.05);
+}
+.address-footer p {
+  transition: all var(--transition-fast);
+}
+.address-footer:hover p {
+  transform: scale(1.02);
+}
+
+/* Footer Bottom Enhanced */
+.f-bottom {
+  transition: all var(--transition-smooth);
+}
+
+/* Star Rating Enhanced */
+.star-rating .star {
+  transition: all var(--transition-bounce);
+}
+.star-rating .star:hover ~ .star {
+  fill: #ccc !important;
+  transform: scale(1) !important;
+}
+
+/* Car Specs Enhanced */
+.car-spec {
+  transition: all var(--transition-fast);
+}
+.car-card:hover .car-spec {
+  color: var(--gold-d);
+}
+.car-spec svg {
+  transition: transform var(--transition-bounce);
+}
+.car-card:hover .car-spec svg {
+  transform: scale(1.2);
+}
+
+/* Price Wrap Enhanced */
+.car-price-wrap {
+  transition: all var(--transition-fast);
+}
+.car-card:hover .car-price-wrap {
+  transform: translateY(-2px);
+}
+
+/* Summer Price Enhanced */
+.car-price-summer {
+  transition: all var(--transition-fast);
+}
+.car-card:hover .car-price-summer {
+  color: var(--gold-d);
+}
+
+/* Step Content Enhanced */
+.step-content {
+  transition: all var(--transition-smooth);
+}
+.step:hover .step-content {
+  transform: translateY(-3px);
+}
+.step-title {
+  transition: color var(--transition-fast);
+}
+.step:hover .step-title {
+  color: var(--gold);
+}
+
+/* Testimonial Name Enhanced */
+.testi-name {
+  transition: color var(--transition-fast);
+}
+.testi-card:hover .testi-name {
+  color: var(--gold);
+}
+.testi-loc {
+  transition: all var(--transition-fast);
+}
+.testi-card:hover .testi-loc {
+  letter-spacing: 3px;
+}
+
+/* Review Subtitle Enhanced */
+.rev-sub {
+  transition: all var(--transition-fast);
+}
+.review-form-wrap:hover .rev-sub {
+  color: var(--gold);
+}
+
+/* Strip Text Enhanced */
+.strip-t {
+  transition: color var(--transition-fast);
+}
+.strip-item:hover .strip-t {
+  color: var(--gold);
+}
+.strip-s {
+  transition: all var(--transition-fast);
+}
+.strip-item:hover .strip-s {
+  color: var(--gold-d);
+}
+
+/* Footer Brand Small Enhanced */
+.f-brand small {
+  transition: all var(--transition-fast);
+}
+.f-brand:hover small {
+  color: var(--gold);
+}
+
+/* Footer Description Enhanced */
+.f-desc {
+  transition: all var(--transition-fast);
+}
+.f-desc:hover {
+  color: var(--gold-d);
+}
+
+/* Footer Column Header Enhanced */
+.f-col h4 {
+  transition: all var(--transition-fast);
+}
+.f-col:hover h4 {
+  color: var(--gold-l);
+  letter-spacing: 4px;
+}
+
+/* Footer Bottom Text Enhanced */
+.f-bottom p {
+  transition: all var(--transition-fast);
+}
+.f-bottom:hover p {
+  color: var(--gold);
+}
+
+/* Hero Bottom Note Enhanced */
+.hero-bottom-note {
+  transition: all var(--transition-smooth);
+}
+.hero-bottom-note:hover {
+  color: var(--gold);
+}
+.hero-bottom-note::before {
+  transition: all var(--transition-smooth);
+}
+.hero-bottom-note:hover::before {
+  width: 40px;
+  background: var(--gold-l);
+}
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(201,148,58,.3);
+  color: #1a1a1a;
+}
+
+/* Focus Visible */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 </style>
+<base target="_blank">
 </head>
 <body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-icon">🚗</div>
+  <div class="loader-text" id="loaderText">Chargement...</div>
+</div>
+
 
 <div class="progress-bar" id="progressBar"></div>
 <div class="toast" id="toast"></div>
@@ -479,174 +1471,498 @@ footer{background:#fafafa;padding:60px 5% 28px;border-top:1px solid rgba(201,148
 </footer>
 
 <script>
-const i18n={
-  fr:{
-    nav_home:'Accueil',nav_cars:'Nos voitures',nav_conditions:'Conditions',nav_how:'Comment ça marche',nav_reviews:'Avis clients',nav_cta:'Réserver',
-    hero_badge:'Location de voitures à Marrakech',hero_title1:'Louez une voiture',hero_title2:'à Marrakech',hero_sub:'Des véhicules récents et haut de gamme pour explorer le Maroc. Service 24h/24, 7j/7. Livraison à l\'aéroport gratuite.',
-    feat1:'Livraison aéroport',feat2:'Assurance complète',feat3:'Support 24/7',
-    btn_wa_book:'Réserver sur WhatsApp',btn_see_cars:'Voir nos voitures',hero_note:'Réservation à partir de 3 jours minimum',
-    cars_label:'Flotte',cars_title1:'Nos voitures',cars_title2:'disponibles',cars_sub:'Tarifs affichés par jour. +100 DH en haute saison (été & jours fériés).',
-    season_normal:'Saison normale',season_summer:'Été / Fériés (+100 DH)',per_day:'/ jour',book_btn:'Réserver',
-    cond_label:'Transparence',cond_title1:'Conditions',cond_title2:'de location',
-    cond1_title:'Profil conducteur',cond1:['Âge minimum : 24 ans','Permis de conduire valide','Étrangers acceptés sans permis international','Passeport suffisant pour les étrangers'],
-    cond2_title:'Tarifs & paiement',cond2:['Paiement : espèces ou carte bancaire','Kilométrage : 200 km/jour inclus','Dépassement km : supplément appliqué','Caution / dépôt : aucun','Tarif été (juil-août) & jours fériés : +100 DH/j'],
-    cond3_title:'Assurance & livraison',cond3:['Assurance tous risques incluse','Livraison aéroport Marrakech : gratuite','Livraison autres villes : en supplément','Disponibilité : 7j/7, 24h/24'],
-    how_label:'Processus',how_title1:'Comment',how_title2:'ça marche ?',
-    step1_t:'Choisissez',step1_s:'Parcourez notre flotte et sélectionnez le véhicule idéal.',
-    step2_t:'Sélectionnez vos dates',step2_s:'Choisissez vos dates de départ et retour. Minimum 3 jours.',
-    step3_t:'Réservez',step3_s:'Envoyez votre demande via WhatsApp. Confirmation rapide.',
-    step4_t:'Récupérez',step4_s:'Livraison gratuite à l\'aéroport ou à votre hôtel.',
-    testi_label:'Avis clients',testi_title1:'Ce que disent',testi_title2:'nos clients',
-    t1_name:'Karim B.',t1_loc:'Marrakech',t1_text:'Service impeccable, voiture propre et livrée à l\'heure. Je recommande vivement !',
-    t2_name:'Youssef A.',t2_loc:'Casablanca',t2_text:'Très bonne expérience, VW T-Roc en parfait état. Équipe réactive.',
-    t3_name:'Julie M.',t3_loc:'Paris',t3_text:'Étrangère sans permis international, aucun problème. Juste le passeport !',
-    t4_name:'Hassan L.',t4_loc:'Agadir',t4_text:'Meilleur rapport qualité/prix à Marrakech. Service au top.',
-    rev_title1:'Laisser un',rev_title2:'avis',rev_sub:'Partagez votre expérience avec saidcars',rev_name:'Votre nom',rev_rate:'Votre note',rev_msg:'Votre avis (optionnel)',rev_btn:'Envoyer votre avis',
-    rev_sent:'✓ Avis envoyé avec succès !',rev_error_name:'Veuillez entrer votre nom',rev_error_rate:'Veuillez sélectionner une note',
-    strip1_t:'3 jours minimum',strip1_s:'Durée minimale de location',strip2_t:'Livraison gratuite',strip2_s:'Aéroport Marrakech',
-    strip3_t:'Annulation flexible',strip3_s:'Conditions souples',strip4_t:'Assurance tous risques',strip4_s:'Couverture complète incluse',
-    f_desc:'Location de voitures premium à Marrakech. Flotte récente, service irréprochable, disponibles 24h/24.',
-    f_nav:'Navigation',f_follow:'Suivez-nous',
-    m_title:'Réserver',m_sub:'Remplissez le formulaire. Minimum 3 jours de location.',
-    l_name:'Votre nom',l_phone:'Téléphone',l_from:'Lieu de départ',l_start:'Date de départ',l_end:'Date de retour',l_msg:'Message (optionnel)',
-    l_car:'Choisir une voiture',car_choose:'— Sélectionnez une voiture —',m_btn:'Envoyer sur WhatsApp',
-    wa_msg:(n,c,f,s,e,m)=>`Bonjour saidcars 👋\n\n*Réservation*\n👤 ${n}\n🚗 ${c}\n📍 ${f}\n📅 ${s} → ${e}${m?'\n📝 '+m:''}\n\nMerci !`,
-    toast_msg:'✓ Redirection vers WhatsApp...',
-    val_name:'Veuillez entrer votre nom',val_phone:'Veuillez entrer un numéro valide',val_car:'Veuillez sélectionner une voiture',
-    val_dates:'Veuillez sélectionner les dates',val_min3:'Minimum 3 jours de location',val_end_before_start:'La date de retour doit être après la date de départ'
-  },
-  en:{
-    nav_home:'Home',nav_cars:'Our Cars',nav_conditions:'Conditions',nav_how:'How it works',nav_reviews:'Reviews',nav_cta:'Book Now',
-    hero_badge:'Car rental in Marrakech',hero_title1:'Rent a car',hero_title2:'in Marrakech',hero_sub:'Recent, premium vehicles to explore Morocco. Available 24/7. Free airport delivery.',
-    feat1:'Airport delivery',feat2:'Full insurance',feat3:'24/7 support',
-    btn_wa_book:'Book on WhatsApp',btn_see_cars:'See our cars',hero_note:'Minimum rental: 3 days',
-    cars_label:'Fleet',cars_title1:'Our',cars_title2:'available cars',cars_sub:'Daily rates shown. +100 MAD during peak season (summer & holidays).',
-    season_normal:'Normal season',season_summer:'Summer / Holidays (+100 MAD)',per_day:'/ day',book_btn:'Book',
-    cond_label:'Transparency',cond_title1:'Rental',cond_title2:'conditions',
-    cond1_title:'Driver profile',cond1:['Minimum age: 24 years','Valid driving license','Foreigners accepted without international license','Passport is sufficient'],
-    cond2_title:'Pricing & payment',cond2:['Payment: cash or card','Mileage: 200 km/day included','Extra km charged additionally','Security deposit: none','Summer (Jul-Aug) & holidays: +100 MAD/day'],
-    cond3_title:'Insurance & delivery',cond3:['Full comprehensive insurance','Free delivery to Marrakech airport','Delivery to other cities: additional fee','Available: 7 days, 24h/24'],
-    how_label:'Process',how_title1:'How does',how_title2:'it work?',
-    step1_t:'Choose',step1_s:'Browse our fleet and select the perfect vehicle.',
-    step2_t:'Select dates',step2_s:'Choose your start and return dates. Minimum 3 days.',
-    step3_t:'Book',step3_s:'Send your request via WhatsApp. Quick confirmation.',
-    step4_t:'Pick up',step4_s:'Free delivery to the airport or your hotel.',
-    testi_label:'Reviews',testi_title1:'What our',testi_title2:'clients say',
-    t1_name:'Karim B.',t1_loc:'Marrakech',t1_text:'Impeccable service, clean car delivered on time. Highly recommend!',
-    t2_name:'Youssef A.',t2_loc:'Casablanca',t2_text:'Great experience, VW T-Roc in perfect condition. Responsive team.',
-    t3_name:'Julie M.',t3_loc:'Paris',t3_text:'Foreigner without international license, no problem. Just my passport!',
-    t4_name:'Hassan L.',t4_loc:'Agadir',t4_text:'Best value for money in Marrakech. Top service.',
-    rev_title1:'Leave a',rev_title2:'review',rev_sub:'Share your experience with saidcars',rev_name:'Your name',rev_rate:'Your rating',rev_msg:'Your review (optional)',rev_btn:'Submit review',
-    rev_sent:'✓ Review sent successfully!',rev_error_name:'Please enter your name',rev_error_rate:'Please select a rating',
-    strip1_t:'3 days minimum',strip1_s:'Minimum rental period',strip2_t:'Free delivery',strip2_s:'Marrakech Airport',
-    strip3_t:'Flexible cancellation',strip3_s:'Easy terms',strip4_t:'Full insurance',strip4_s:'Complete coverage',
-    f_desc:'Premium car rental in Marrakech. Recent fleet, excellent service, available 24/7.',
-    f_nav:'Navigation',f_follow:'Follow us',
-    m_title:'Book Now',m_sub:'Fill the form. Minimum 3 days rental.',
-    l_name:'Your name',l_phone:'Phone',l_from:'Pickup location',l_start:'Start date',l_end:'Return date',l_msg:'Message (optional)',
-    l_car:'Choose a car',car_choose:'— Select a car —',m_btn:'Send on WhatsApp',
-    wa_msg:(n,c,f,s,e,m)=>`Hello saidcars 👋\n\n*Booking*\n👤 ${n}\n🚗 ${c}\n📍 ${f}\n📅 ${s} → ${e}${m?'\n📝 '+m:''}\n\nThank you!`,
-    toast_msg:'✓ Redirecting to WhatsApp...',
-    val_name:'Please enter your name',val_phone:'Please enter a valid number',val_car:'Please select a car',
-    val_dates:'Please select both dates',val_min3:'Minimum 3 days rental',val_end_before_start:'Return date must be after start date'
-  },
-  ar:{
-    nav_home:'الرئيسية',nav_cars:'سياراتنا',nav_conditions:'الشروط',nav_how:'كيف يعمل',nav_reviews:'آراء العملاء',nav_cta:'احجز الآن',
-    hero_badge:'كراء السيارات بمراكش',hero_title1:'استأجر سيارتك',hero_title2:'في مراكش بأفضل سعر',hero_sub:'سيارات حديثة وفاخرة لاستكشاف المغرب. متاحون 24/7. التوصيل للمطار مجاني.',
-    feat1:'توصيل للمطار',feat2:'تأمين شامل',feat3:'دعم 24/7',
-    btn_wa_book:'احجز على واتساب',btn_see_cars:'شوف سياراتنا',hero_note:'الحجز من 3 أيام على الأقل',
-    cars_label:'الأسطول',cars_title1:'سياراتنا',cars_title2:'المتاحة',cars_sub:'الثمن بالنهار. +100 درهم في الموسم الصيفي والعطل.',
-    season_normal:'الموسم العادي',season_summer:'صيف / عطل (+100 درهم)',per_day:'/ يوم',book_btn:'احجز',
-    cond_label:'الشفافية',cond_title1:'شروط',cond_title2:'الكراء',
-    cond1_title:'ملف السائق',cond1:['السن الأدنى: 24 سنة','رخصة السياقة سارية المفعول','الأجانب مقبولون بدون رخصة دولية','جواز السفر كافٍ'],
-    cond2_title:'الثمن والدفع',cond2:['الدفع: كاش أو بطاقة','الكيلومتراج: 200 كم/يوم مشمول','الزيادة في الكيلومتراج: مؤدى عنها','الكاسيون: غير مطلوب','الصيف والعطل: +100 درهم/يوم'],
-    cond3_title:'التأمين والتوصيل',cond3:['تأمين شامل لجميع الأضرار','التوصيل لمطار مراكش: مجاني','التوصيل لمدن أخرى: بثمن إضافي','متاحون: 7 أيام، 24/24'],
-    how_label:'العملية',how_title1:'كيف',how_title2:'تسير الأمور؟',
-    step1_t:'اختر',step1_s:'تصفح أسطولنا واختر السيارة المناسبة.',
-    step2_t:'حدد التواريخ',step2_s:'اختر تاريخ البداية والرجوع. الحد الأدنى 3 أيام.',
-    step3_t:'احجز',step3_s:'أرسل طلبك عبر واتساب. تأكيد سريع.',
-    step4_t:'استلم',step4_s:'توصيل مجاني للمطار أو الفندق.',
-    testi_label:'آراء العملاء',testi_title1:'ماذا يقول',testi_title2:'عملاؤنا',
-    t1_name:'كريم ب.',t1_loc:'مراكش',t1_text:'خدمة ممتازة، السيارة نظيفة ووصلت في الوقت. أوصي بشدة!',
-    t2_name:'يوسف أ.',t2_loc:'الدار البيضاء',t2_text:'تجربة رائعة، VW T-Roc في حالة ممتازة. فريق محترف.',
-    t3_name:'جولي م.',t3_loc:'باريس',t3_text:'أجنبية بدون رخصة دولية، ولا مشكلة. فقط جواز السفر!',
-    t4_name:'حسن ل.',t4_loc:'أكادير',t4_text:'أفضل سعر وجودة في مراكش. خدمة ممتازة.',
-    rev_title1:'اترك',rev_title2:'تقييماً',rev_sub:'شارك تجربتك مع saidcars',rev_name:'اسمك',rev_rate:'تقييمك',rev_msg:'تعليقك (اختياري)',rev_btn:'إرسال التقييم',
-    rev_sent:'✓ تم إرسال تقييمك بنجاح!',rev_error_name:'المرجو إدخال اسمك',rev_error_rate:'المرجو اختيار تقييم',
-    strip1_t:'3 أيام كحد أدنى',strip1_s:'الحد الأدنى للحجز',strip2_t:'توصيل مجاني',strip2_s:'مطار مراكش',
-    strip3_t:'إلغاء مرن',strip3_s:'شروط سهلة',strip4_t:'تأمين شامل',strip4_s:'تغطية كاملة',
-    f_desc:'كراء السيارات الفاخرة بمراكش. أسطول حديث، خدمة ممتازة، متاحون 24/24.',
-    f_nav:'التنقل',f_follow:'تابعنا',
-    m_title:'احجز الآن',m_sub:'أملأ النموذج. الحد الأدنى 3 أيام.',
-    l_name:'اسمك',l_phone:'الهاتف',l_from:'مكان الانطلاق',l_start:'تاريخ البداية',l_end:'تاريخ الرجوع',l_msg:'ملاحظة (اختياري)',
-    l_car:'اختر سيارة',car_choose:'— اختر سيارة —',m_btn:'إرسال على واتساب',
-    wa_msg:(n,c,f,s,e,m)=>`مرحباً saidcars 👋\n\n*حجز جديد*\n👤 ${n}\n🚗 ${c}\n📍 ${f}\n📅 ${s} → ${e}${m?'\n📝 '+m:''}\n\nشكراً!`,
-    toast_msg:'✓ جاري التوجيه إلى واتساب...',
-    val_name:'المرجو إدخال اسمك',val_phone:'المرجو إدخال رقم صحيح',val_car:'المرجو اختيار سيارة',
-    val_dates:'المرجو اختيار التاريخين',val_min3:'الحد الأدنى 3 أيام',val_end_before_start:'تاريخ الرجوع بعد تاريخ البداية'
+
+// ===== PAGE LOADER =====
+window.addEventListener('load', () => {
+  const loader = document.getElementById('pageLoader');
+  const loaderText = document.getElementById('loaderText');
+
+  // Update loader text based on language
+  if (currentLang === 'ar') {
+    loaderText.textContent = 'جاري التحميل...';
+  } else if (currentLang === 'en') {
+    loaderText.textContent = 'Loading...';
+  } else {
+    loaderText.textContent = 'Chargement...';
   }
+
+  setTimeout(() => {
+    loader.classList.add('hidden');
+  }, 1500);
+});
+
+// ===== ENHANCED SCROLL ANIMATIONS =====
+const observerOptions = {
+  threshold: 0.08,
+  rootMargin: '0px 0px -50px 0px'
 };
 
-const cars=[
-  {name:'Peugeot 208',price:300,summer:400,img:'cars1.jpeg',gear:'Automatique',seats:5,badge:'Peugeot',year:'2025'},
-  {name:'Mercedes-Benz CLA 250',price:1100,summer:1200,img:'cars2.jpeg',gear:'Automatique',seats:5,badge:'Mercedes-Benz',year:'2026'},
-  {name:'Volkswagen T-Roc',price:700,summer:800,img:'cars3.jpeg',gear:'Automatique',seats:5,badge:'Volkswagen',year:'2025'},
-  {name:'Mercedes-Benz G-Class AMG',price:9200,summer:9500,img:'cars4.jpeg',gear:'Automatique',seats:5,badge:'Mercedes-Benz',year:'2025'},
-  {name:'Volkswagen Golf',price:1000,summer:1200,img:'cars5.jpeg',gear:'Automatique',seats:5,badge:'Volkswagen',year:'2024'},
-  {name:'Renault Clio (Bleu)',price:300,summer:400,img:'cars6.jpeg',gear:'Automatique',seats:5,badge:'Renault',year:'2025'},
-  {name:'Audi A3',price:1100,summer:1200,img:'cars7.jpeg',gear:'Automatique',seats:5,badge:'Audi',year:'2026'},
-  {name:'Renault Clio (Blanc)',price:300,summer:400,img:'cars8.jpeg',gear:'Automatique',seats:5,badge:'Renault',year:'2020'},
-  {name:'Mercedes-Benz A-Class',price:1100,summer:1200,img:'cars9.jpeg',gear:'Automatique',seats:5,badge:'Mercedes-Benz',year:'2024'},
-  {name:'Cupra Formentor',price:1100,summer:1200,img:'cars10.jpeg',gear:'Automatique',seats:5,badge:'Cupra',year:'2026'},
-  {name:'Fiat 500',price:300,summer:400,img:'cars11.jpeg',gear:'Automatique',seats:4,badge:'Fiat',year:'2024'},
-  {name:'Dacia Duster',price:350,summer:450,img:'cars12.jpeg',gear:'Automatique',seats:5,badge:'Dacia',year:'2024'}
-];
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('vis');
+    }
+  });
+}, observerOptions);
 
-let currentLang='fr',currentSeason='normal',currentCar='',tIdx=0,tCardW=0,reviewRating=0;
+function observeAll() {
+  document.querySelectorAll('.fu').forEach(el => observer.observe(el));
+}
 
-function detectLang(){const s=localStorage.getItem('ruamsefeh_lang');if(s&&(s==='fr'||s==='en'||s==='ar'))return s;const l=(navigator.language||'fr').split('-')[0];return l==='ar'?'ar':l==='fr'?'fr':'en';}
+// ===== PARALLAX EFFECT ON HERO =====
+window.addEventListener('scroll', () => {
+  const heroBg = document.querySelector('.hero-bg img');
+  if (heroBg) {
+    const scrolled = window.scrollY;
+    const rate = scrolled * 0.3;
+    heroBg.style.transform = `translateY(${rate}px) scale(1.05)`;
+  }
+}, { passive: true });
 
-function setLang(lang){currentLang=lang;localStorage.setItem('ruamsefeh_lang',lang);const t=i18n[lang];document.title="Ru Amsefeh - Location Voitures Marrakech";document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});const isAr=lang==='ar';document.documentElement.setAttribute('dir',isAr?'rtl':'ltr');document.documentElement.setAttribute('lang',lang);document.body.style.fontFamily=isAr?'var(--ff-ar)':'var(--ff-body)';document.querySelectorAll('.lang-flag-btn').forEach(b=>b.classList.remove('active'));const ab=document.getElementById('lang-'+lang);if(ab)ab.classList.add('active');buildCars();buildConditions();buildTestimonials();updateModalLabels();buildCarSelect();resetReviewRating();tIdx=0;setTimeout(initSlider,100);}
+// ===== ENHANCED NAVBAR SCROLL =====
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  const progressBar = document.getElementById('progressBar');
 
-function setReviewRating(v){reviewRating=v;document.querySelectorAll('#review-stars .star').forEach((s,i)=>s.classList.toggle('active',i<v));}
-function resetReviewRating(){reviewRating=0;document.querySelectorAll('#review-stars .star').forEach(s=>s.classList.remove('active'));}
+  if (nav) {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  }
 
-function submitReview(){const t=i18n[currentLang],n=document.getElementById('rev-name').value.trim(),m=document.getElementById('rev-msg').value.trim(),e=document.getElementById('rev-error');e.classList.remove('show');if(!n){e.textContent=t.rev_error_name;e.classList.add('show');return;}if(!reviewRating){e.textContent=t.rev_error_rate;e.classList.add('show');return;}window.open('https://wa.me/212725950908?text='+encodeURIComponent(`مرحباً saidcars 👋\n\n*تقييم جديد*\n👤 ${n}\n${'⭐'.repeat(reviewRating)} ${reviewRating}/5${m?'\n📝 '+m:''}\n\nشكراً!`),'_blank');document.getElementById('rev-name').value='';document.getElementById('rev-msg').value='';resetReviewRating();showToast(t.rev_sent,'success');}
+  if (progressBar) {
+    const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = scrollPercent + '%';
+  }
+}, { passive: true });
 
-function buildCars(){const t=i18n[currentLang],g=document.getElementById('cars-grid');if(!g)return;g.innerHTML='';const frag=document.createDocumentFragment();cars.forEach((c,i)=>{const p=currentSeason==='summer'?c.summer:c.price,d=document.createElement('div');d.className='car-card';d.innerHTML=`${c.badge?`<span class="car-badge">${c.badge}</span>`:''}<div class="car-img-wrap"><img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=color:var(--gold)>${c.name}</span>'"/></div><div class="car-info"><div class="car-name">${c.name}</div><div class="car-specs-row"><div class="car-spec"><svg viewBox="0 0 24 24" width="12" height="12" fill="var(--gold)"><circle cx="12" cy="12" r="10"/></svg>${c.gear}</div><div class="car-spec"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>${c.seats} ${currentLang==='ar'?'مقاعد':'places'}</div>${c.year?`<div class="car-spec"><svg viewBox="0 0 24 24"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>${c.year}</div>`:''}</div><div class="car-price-wrap"><div class="car-price">${p} DH</div><div class="car-price-unit">${t.per_day}</div></div>${currentSeason==='normal'?`<div class="car-price-summer">${currentLang==='ar'?`الصيف: ${c.summer} درهم`:`Été : ${c.summer} DH`}</div>`:''}<button class="btn-book-car" onclick="openModal('${c.name}')">${t.book_btn}</button></div>`;frag.appendChild(d);});g.appendChild(frag);requestAnimationFrame(()=>{const cards=g.querySelectorAll('.car-card');cards.forEach((c,i)=>{setTimeout(()=>c.classList.add('vis'),40+(i*15));});});}
+// ===== ENHANCED MOBILE MENU =====
+function toggleMenu() {
+  const menu = document.getElementById('mobMenu');
+  const burger = document.getElementById('burger');
+  menu.classList.toggle('open');
+  burger.classList.toggle('active');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
 
-function buildTestimonials(){const t=i18n[currentLang],s=document.getElementById('tSlides');if(!s)return;s.innerHTML='';for(let i=1;i<=4;i++){const c=document.createElement('div');c.className='testi-card';c.innerHTML=`<div class="testi-stars">${'<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'.repeat(5)}</div><p class="testi-text">${t['t'+i+'_text']}</p><div class="testi-name">${t['t'+i+'_name']}</div><div class="testi-loc">${t['t'+i+'_loc']}</div>`;s.appendChild(c);}initSlider();}
+// ===== ENHANCED MODAL =====
+function openModal(cn) {
+  currentCar = cn;
+  updateModalLabels();
+  buildCarSelect();
+  document.getElementById('m-car').textContent = cn || (currentLang === 'ar' ? 'سيارة' : 'Voiture');
+  clearErrors();
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('f-start').value = '';
+  document.getElementById('f-end').value = '';
+  document.getElementById('f-msg').value = '';
+  if (cn) document.getElementById('f-car').value = cn;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
-function buildCarSelect(){const t=i18n[currentLang],s=document.getElementById('f-car');if(!s)return;s.innerHTML=`<option value="">${t.car_choose}</option>`;cars.forEach(c=>{const o=document.createElement('option');o.value=c.name;o.textContent=c.name;s.appendChild(o);});if(currentCar&&s.querySelector(`option[value="${currentCar}"]`))s.value=currentCar;}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  clearErrors();
+}
 
-function buildConditions(){const t=i18n[currentLang];['cond1','cond2','cond3'].forEach(k=>{const l=document.getElementById(k+'-list');if(l){l.innerHTML='';t[k].forEach(i=>{const li=document.createElement('li');li.textContent=i;l.appendChild(li);});}});}
+// Close modal on backdrop click
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this || e.target.classList.contains('modal-ov')) {
+    closeModal();
+  }
+});
 
-function setSeason(s){currentSeason=s;document.getElementById('btn-normal').classList.toggle('active',s==='normal');document.getElementById('btn-summer').classList.toggle('active',s==='summer');buildCars();}
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+});
 
-function updateModalLabels(){const t=i18n[currentLang];document.getElementById('m-title').textContent=t.m_title;document.getElementById('m-sub').textContent=t.m_sub;document.getElementById('l-car').textContent=t.l_car;document.getElementById('l-name').textContent=t.l_name;document.getElementById('l-phone').textContent=t.l_phone;document.getElementById('l-from').textContent=t.l_from;document.getElementById('l-start').textContent=t.l_start;document.getElementById('l-end').textContent=t.l_end;document.getElementById('l-msg').textContent=t.l_msg;document.getElementById('m-btn-txt').textContent=t.m_btn;}
+// ===== ENHANCED TOAST =====
+function showToast(m, tp) {
+  const tt = document.getElementById('toast');
+  tt.textContent = m;
+  tt.className = 'toast ' + (tp === 'error' ? 'error' : tp === 'success' ? 'success' : '');
+  tt.classList.add('show');
 
-function openModal(cn){currentCar=cn;updateModalLabels();buildCarSelect();document.getElementById('m-car').textContent=cn||(currentLang==='ar'?'سيارة':'Voiture');clearErrors();document.getElementById('f-name').value='';document.getElementById('f-phone').value='';document.getElementById('f-start').value='';document.getElementById('f-end').value='';document.getElementById('f-msg').value='';if(cn)document.getElementById('f-car').value=cn;document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
-function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';clearErrors();}
-function clearErrors(){document.querySelectorAll('.ff input.error, .ff select.error').forEach(e=>e.classList.remove('error'));document.querySelectorAll('.error-msg').forEach(e=>{e.classList.remove('show');e.textContent='';});}
-function showFieldError(fid,eid,m){const f=document.getElementById(fid),e=document.getElementById(eid);if(f)f.classList.add('error');if(e){e.textContent=m;e.classList.add('show');}}
+  // Auto hide after 3.5 seconds
+  setTimeout(() => {
+    tt.classList.remove('show');
+  }, 3500);
+}
 
-function validateAndSend(){clearErrors();const t=i18n[currentLang];let h=false;const c=document.getElementById('f-car').value,n=document.getElementById('f-name').value.trim(),p=document.getElementById('f-phone').value.trim(),f=document.getElementById('f-from').value,s=document.getElementById('f-start').value,e=document.getElementById('f-end').value,m=document.getElementById('f-msg').value.trim();if(!c){showFieldError('f-car','err-car',t.val_car);h=true;}if(!n){showFieldError('f-name','err-name',t.val_name);h=true;}if(!p||p.replace(/[\s\+\-\(\)]/g,'').length<8){showFieldError('f-phone','err-phone',t.val_phone);h=true;}if(!s||!e){showFieldError('f-start','err-start',t.val_dates);showFieldError('f-end','err-end','');h=true;}if(s&&e){const ds=new Date(s),de=new Date(e);if(de<=ds){showFieldError('f-end','err-end',t.val_end_before_start);h=true;}if(Math.ceil((de-ds)/86400000)<3){showFieldError('f-end','err-end',t.val_min3);h=true;}}if(h){const fe=document.querySelector('.ff input.error, .ff select.error');if(fe)fe.scrollIntoView({behavior:'smooth',block:'center'});return;}window.open('https://wa.me/212725950908?text='+encodeURIComponent(t.wa_msg(n,c,f,s,e,m)),'_blank');closeModal();showToast(t.toast_msg,'success');}
+// ===== ENHANCED CARDS ANIMATION ON LOAD =====
+function buildCars() {
+  const t = i18n[currentLang];
+  const g = document.getElementById('cars-grid');
+  if (!g) return;
+  g.innerHTML = '';
+  const frag = document.createDocumentFragment();
 
-function openWA(){const g=currentLang==='ar'?'مرحباً saidcars 🚗':(currentLang==='en'?'Hello saidcars 🚗':'Bonjour saidcars 🚗');window.open('https://wa.me/212725950908?text='+encodeURIComponent(g),'_blank');}
-function showToast(m,tp){const tt=document.getElementById('toast');tt.textContent=m;tt.className='toast '+(tp==='error'?'error':'');tt.classList.add('show');setTimeout(()=>tt.classList.remove('show'),3500);}
-function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open');}
+  cars.forEach((c, i) => {
+    const p = currentSeason === 'summer' ? c.summer : c.price;
+    const d = document.createElement('div');
+    d.className = 'car-card';
+    d.innerHTML = `
+      ${c.badge ? `<span class="car-badge">${c.badge}</span>` : ''}
+      <div class="car-img-wrap">
+        <img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=color:var(--gold)>${c.name}</span>'"/>
+      </div>
+      <div class="car-info">
+        <div class="car-name">${c.name}</div>
+        <div class="car-specs-row">
+          <div class="car-spec">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="var(--gold)">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            ${c.gear}
+          </div>
+          <div class="car-spec">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+            ${c.seats} ${currentLang === 'ar' ? 'مقاعد' : 'places'}
+          </div>
+          ${c.year ? `
+          <div class="car-spec">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+            </svg>
+            ${c.year}
+          </div>` : ''}
+        </div>
+        <div class="car-price-wrap">
+          <div class="car-price">${p} DH</div>
+          <div class="car-price-unit">${t.per_day}</div>
+        </div>
+        ${currentSeason === 'normal' ? `<div class="car-price-summer">${currentLang === 'ar' ? `الصيف: ${c.summer} درهم` : `Été : ${c.summer} DH`}</div>` : ''}
+        <button class="btn-book-car" onclick="openModal('${c.name}')">${t.book_btn}</button>
+      </div>
+    `;
+    frag.appendChild(d);
+  });
 
-window.addEventListener('scroll',()=>{const n=document.getElementById('mainNav');if(n)n.classList.toggle('scrolled',window.scrollY>80);document.getElementById('progressBar').style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+  g.appendChild(frag);
 
-function initSlider(){const o=document.getElementById('tOuter'),s=document.getElementById('tSlides');if(!o||!s||s.children.length===0)return;const w=o.offsetWidth,pv=w>960?3:w>600?2:1,gap=20;tCardW=(w-(gap*(pv-1)))/pv;Array.from(s.children).forEach(c=>{c.style.flex='0 0 '+tCardW+'px';c.style.minWidth=tCardW+'px';c.style.maxWidth=tCardW+'px';});slideTesti(0);}
-function slideTesti(dir){const s=document.getElementById('tSlides');if(!s||s.children.length===0)return;const w=document.getElementById('tOuter').offsetWidth,pv=w>960?3:w>600?2:1;tIdx=Math.max(0,Math.min(tIdx+dir,Math.max(0,s.children.length-pv)));s.style.transform=`translateX(-${tIdx*(tCardW+20)}px)`;}
+  // Staggered animation
+  requestAnimationFrame(() => {
+    const cards = g.querySelectorAll('.car-card');
+    cards.forEach((c, i) => {
+      setTimeout(() => c.classList.add('vis'), 40 + (i * 15));
+    });
+  });
+}
 
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:.08});
-function observeAll(){document.querySelectorAll('.fu').forEach(el=>obs.observe(el));}
+// ===== ENHANCED TESTIMONIALS =====
+function buildTestimonials() {
+  const t = i18n[currentLang];
+  const s = document.getElementById('tSlides');
+  if (!s) return;
+  s.innerHTML = '';
 
-(function(){const l=detectLang();currentLang=l;document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');document.documentElement.setAttribute('lang',l);document.body.style.fontFamily=l==='ar'?'var(--ff-ar)':'var(--ff-body)';document.addEventListener('DOMContentLoaded',()=>{setLang(l);observeAll();});})();
+  for (let i = 1; i <= 4; i++) {
+    const c = document.createElement('div');
+    c.className = 'testi-card';
+    c.innerHTML = `
+      <div class="testi-stars">
+        ${'<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'.repeat(5)}
+      </div>
+      <p class="testi-text">${t['t' + i + '_text']}</p>
+      <div class="testi-name">${t['t' + i + '_name']}</div>
+      <div class="testi-loc">${t['t' + i + '_loc']}</div>
+    `;
+    s.appendChild(c);
+  }
 
-window.addEventListener('resize',()=>{tIdx=0;setTimeout(initSlider,150);},{passive:true});
+  initSlider();
+}
+
+// ===== ENHANCED SLIDER =====
+function initSlider() {
+  const o = document.getElementById('tOuter');
+  const s = document.getElementById('tSlides');
+  if (!o || !s || s.children.length === 0) return;
+
+  const w = o.offsetWidth;
+  const pv = w > 960 ? 3 : w > 600 ? 2 : 1;
+  const gap = 20;
+  tCardW = (w - (gap * (pv - 1))) / pv;
+
+  Array.from(s.children).forEach(c => {
+    c.style.flex = '0 0 ' + tCardW + 'px';
+    c.style.minWidth = tCardW + 'px';
+    c.style.maxWidth = tCardW + 'px';
+  });
+
+  slideTesti(0);
+}
+
+function slideTesti(dir) {
+  const s = document.getElementById('tSlides');
+  if (!s || s.children.length === 0) return;
+
+  const w = document.getElementById('tOuter').offsetWidth;
+  const pv = w > 960 ? 3 : w > 600 ? 2 : 1;
+  tIdx = Math.max(0, Math.min(tIdx + dir, Math.max(0, s.children.length - pv)));
+  s.style.transform = `translateX(-${tIdx * (tCardW + 20)}px)`;
+}
+
+// ===== ENHANCED REVIEW SUBMISSION =====
+function submitReview() {
+  const t = i18n[currentLang];
+  const n = document.getElementById('rev-name').value.trim();
+  const m = document.getElementById('rev-msg').value.trim();
+  const e = document.getElementById('rev-error');
+
+  e.classList.remove('show');
+
+  if (!n) {
+    e.textContent = t.rev_error_name;
+    e.classList.add('show');
+    return;
+  }
+
+  if (!reviewRating) {
+    e.textContent = t.rev_error_rate;
+    e.classList.add('show');
+    return;
+  }
+
+  window.open('https://wa.me/212725950908?text=' + encodeURIComponent(
+    `مرحباً saidcars 👋
+
+*تقييم جديد*
+👤 ${n}
+${'⭐'.repeat(reviewRating)} ${reviewRating}/5${m ? '
+📝 ' + m : ''}
+
+شكراً!`
+  ), '_blank');
+
+  document.getElementById('rev-name').value = '';
+  document.getElementById('rev-msg').value = '';
+  resetReviewRating();
+  showToast(t.rev_sent, 'success');
+}
+
+// ===== ENHANCED FORM VALIDATION =====
+function validateAndSend() {
+  clearErrors();
+  const t = i18n[currentLang];
+  let h = false;
+
+  const c = document.getElementById('f-car').value;
+  const n = document.getElementById('f-name').value.trim();
+  const p = document.getElementById('f-phone').value.trim();
+  const f = document.getElementById('f-from').value;
+  const s = document.getElementById('f-start').value;
+  const e = document.getElementById('f-end').value;
+  const m = document.getElementById('f-msg').value.trim();
+
+  if (!c) {
+    showFieldError('f-car', 'err-car', t.val_car);
+    h = true;
+  }
+  if (!n) {
+    showFieldError('f-name', 'err-name', t.val_name);
+    h = true;
+  }
+  if (!p || p.replace(/[\s\+\-\(\)]/g, '').length < 8) {
+    showFieldError('f-phone', 'err-phone', t.val_phone);
+    h = true;
+  }
+  if (!s || !e) {
+    showFieldError('f-start', 'err-start', t.val_dates);
+    showFieldError('f-end', 'err-end', '');
+    h = true;
+  }
+  if (s && e) {
+    const ds = new Date(s);
+    const de = new Date(e);
+    if (de <= ds) {
+      showFieldError('f-end', 'err-end', t.val_end_before_start);
+      h = true;
+    }
+    if (Math.ceil((de - ds) / 86400000) < 3) {
+      showFieldError('f-end', 'err-end', t.val_min3);
+      h = true;
+    }
+  }
+
+  if (h) {
+    const fe = document.querySelector('.ff input.error, .ff select.error');
+    if (fe) fe.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  window.open('https://wa.me/212725950908?text=' + encodeURIComponent(t.wa_msg(n, c, f, s, e, m)), '_blank');
+  closeModal();
+  showToast(t.toast_msg, 'success');
+}
+
+// ===== ENHANCED LANGUAGE SWITCHING =====
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ruamsefeh_lang', lang);
+  const t = i18n[lang];
+
+  document.title = "Ru Amsefeh - Location Voitures Marrakech";
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.textContent = t[k];
+  });
+
+  const isAr = lang === 'ar';
+  document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', lang);
+  document.body.style.fontFamily = isAr ? 'var(--ff-ar)' : 'var(--ff-body)';
+
+  document.querySelectorAll('.lang-flag-btn').forEach(b => b.classList.remove('active'));
+  const ab = document.getElementById('lang-' + lang);
+  if (ab) ab.classList.add('active');
+
+  buildCars();
+  buildConditions();
+  buildTestimonials();
+  updateModalLabels();
+  buildCarSelect();
+  resetReviewRating();
+  tIdx = 0;
+  setTimeout(initSlider, 100);
+
+  // Update loader text
+  const loaderText = document.getElementById('loaderText');
+  if (loaderText) {
+    if (lang === 'ar') loaderText.textContent = 'جاري التحميل...';
+    else if (lang === 'en') loaderText.textContent = 'Loading...';
+    else loaderText.textContent = 'Chargement...';
+  }
+}
+
+// ===== ENHANCED SEASON TOGGLE =====
+function setSeason(s) {
+  currentSeason = s;
+  document.getElementById('btn-normal').classList.toggle('active', s === 'normal');
+  document.getElementById('btn-summer').classList.toggle('active', s === 'summer');
+  buildCars();
+}
+
+// ===== ENHANCED CAR SELECT =====
+function buildCarSelect() {
+  const t = i18n[currentLang];
+  const s = document.getElementById('f-car');
+  if (!s) return;
+  s.innerHTML = `<option value="">${t.car_choose}</option>`;
+  cars.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c.name;
+    o.textContent = c.name;
+    s.appendChild(o);
+  });
+  if (currentCar && s.querySelector(`option[value="${currentCar}"]`)) {
+    s.value = currentCar;
+  }
+}
+
+// ===== ENHANCED CONDITIONS =====
+function buildConditions() {
+  const t = i18n[currentLang];
+  ['cond1', 'cond2', 'cond3'].forEach(k => {
+    const l = document.getElementById(k + '-list');
+    if (l) {
+      l.innerHTML = '';
+      t[k].forEach(i => {
+        const li = document.createElement('li');
+        li.textContent = i;
+        l.appendChild(li);
+      });
+    }
+  });
+}
+
+// ===== ENHANCED MODAL LABELS =====
+function updateModalLabels() {
+  const t = i18n[currentLang];
+  document.getElementById('m-title').textContent = t.m_title;
+  document.getElementById('m-sub').textContent = t.m_sub;
+  document.getElementById('l-car').textContent = t.l_car;
+  document.getElementById('l-name').textContent = t.l_name;
+  document.getElementById('l-phone').textContent = t.l_phone;
+  document.getElementById('l-from').textContent = t.l_from;
+  document.getElementById('l-start').textContent = t.l_start;
+  document.getElementById('l-end').textContent = t.l_end;
+  document.getElementById('l-msg').textContent = t.l_msg;
+  document.getElementById('m-btn-txt').textContent = t.m_btn;
+}
+
+// ===== ENHANCED ERROR HANDLING =====
+function clearErrors() {
+  document.querySelectorAll('.ff input.error, .ff select.error').forEach(e => e.classList.remove('error'));
+  document.querySelectorAll('.error-msg').forEach(e => {
+    e.classList.remove('show');
+    e.textContent = '';
+  });
+}
+
+function showFieldError(fid, eid, m) {
+  const f = document.getElementById(fid);
+  const e = document.getElementById(eid);
+  if (f) f.classList.add('error');
+  if (e) {
+    e.textContent = m;
+    e.classList.add('show');
+  }
+}
+
+// ===== ENHANCED WHATSAPP =====
+function openWA() {
+  const g = currentLang === 'ar' ? 'مرحباً saidcars 🚗' : (currentLang === 'en' ? 'Hello saidcars 🚗' : 'Bonjour saidcars 🚗');
+  window.open('https://wa.me/212725950908?text=' + encodeURIComponent(g), '_blank');
+}
+
+// ===== ENHANCED REVIEW RATING =====
+function setReviewRating(v) {
+  reviewRating = v;
+  document.querySelectorAll('#review-stars .star').forEach((s, i) => {
+    s.classList.toggle('active', i < v);
+  });
+}
+
+function resetReviewRating() {
+  reviewRating = 0;
+  document.querySelectorAll('#review-stars .star').forEach(s => s.classList.remove('active'));
+}
+
+// ===== ENHANCED LANGUAGE DETECTION =====
+function detectLang() {
+  const s = localStorage.getItem('ruamsefeh_lang');
+  if (s && (s === 'fr' || s === 'en' || s === 'ar')) return s;
+  const l = (navigator.language || 'fr').split('-')[0];
+  return l === 'ar' ? 'ar' : l === 'fr' ? 'fr' : 'en';
+}
+
+// ===== INITIALIZATION =====
+(function() {
+  const l = detectLang();
+  currentLang = l;
+  document.documentElement.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', l);
+  document.body.style.fontFamily = l === 'ar' ? 'var(--ff-ar)' : 'var(--ff-body)';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setLang(l);
+    observeAll();
+  });
+})();
+
+// ===== RESIZE HANDLER =====
+window.addEventListener('resize', () => {
+  tIdx = 0;
+  setTimeout(initSlider, 150);
+}, { passive: true });
+
 </script>
 </body>
 </html>
